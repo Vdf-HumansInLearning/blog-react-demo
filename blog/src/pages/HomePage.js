@@ -355,24 +355,22 @@ export default class HomePage extends Component {
                 >
                   {({ isSubmitting }) => (
                     <Form>
-                      <Field type="text" name="title" />
+                      <Field type="text" name="title" className="input margin" placeholder="Please enter title" />
                       <ErrorMessage name="title" component="div" />
-                      <Field type="text" name="tag" />
+                      <Field type="text" name="tag" className="input " placeholder="Please enter tag"/>
                       <ErrorMessage name="tag" component="div" />
-                      <Field type="text" name="author" />
+                      <Field type="text" name="author" className="input margin" placeholder="Please enter author"/>
                       <ErrorMessage name="author" component="div" />
-                      <Field type="text" name="date" />
+                      <Field type="text" name="date" className="input " placeholder="Please enter date"/>
                       <ErrorMessage name="date" component="div" />
-                      <Field type="text" name="imgUrl" />
+                      <Field type="text" name="imgUrl" className="input margin" placeholder="Please enter image url"/>
                       <ErrorMessage name="imgUrl" component="div" />
-                      <Field type="text" name="saying" />
+                      <Field type="text" name="saying" className="input " placeholder="Please enter saying"/>
                       <ErrorMessage name="saying" component="div" />
-                      <Field type="text" name="content" as="textarea" />
+                      <Field type="text" name="content" as="textarea" className="textarea" cols="28" rows="7" placeholder="Please enter content"/>
                       <ErrorMessage name="content" component="div" />
 
-                      <button type="submit" disabled={isSubmitting}>
-                        Submit
-                      </button>
+
                       <div className="modal__buttons">
                         <button
                           type="button"

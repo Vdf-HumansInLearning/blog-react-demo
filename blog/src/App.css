@@ -275,6 +275,7 @@ h2.title.modal-title {
 
 input.input {
   font-family: "Cardo-Regular";
+  font-size: 18px;
   width: 400px;
   height: 35px;
   margin-bottom: 25px;
@@ -298,7 +299,7 @@ textarea.textarea {
   border: 1px solid var(--primary-color-font);
   border-radius: 5px;
   font-family: "Cardo-Regular", serif;
-  margin: 0px 75px;
+  /* margin: 0px 75px; */
   background-color: var(--bg-color);
 }
 
