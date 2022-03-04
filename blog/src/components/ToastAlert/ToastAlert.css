@@ -4,8 +4,7 @@
   overflow: hidden;
   background-color: var(--bg-color);
 }
-
-.alert-success {
+.alert {
   display: block;
   width: 300px;
   margin: 0px auto;
@@ -15,10 +14,16 @@
   right: 0;
   top: 5px;
   z-index: 3;
-  color: #0f5132;
-  background-color: #d1e7dd;
   border-color: #badbcc;
   padding: 1rem 1rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
+}
+.alert-success {
+  color: #0f5132;
+  background-color: #d1e7dd;
+}
+.alert-delete {
+  color: #f10808;
+  background-color: #d1e7dd;
 }

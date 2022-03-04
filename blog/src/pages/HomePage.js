@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Article from "../components/Article";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
-import SuccessAlert from "../components/SuccessAlert/SuccessAlert";
+import ToastAlert from "../components/ToastAlert/ToastAlert";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 export default class HomePage extends Component {
@@ -30,7 +30,8 @@ export default class HomePage extends Component {
       isDeleteModalOpen: false,
       isShowLoad: true,
       isToastShown: false,
-      showSuccessMessage:false,
+      showSuccessMessage: false,
+      showDeleteMessage: false,
       toastContent: "",
     };
     this.getArticles = this.getArticles.bind(this);
@@ -155,14 +156,20 @@ export default class HomePage extends Component {
         this.setState({
           isToastShown: false,
           showSuccessMessage: false,
+          showDeleteMessage: false,
           toastContent: "",
         }),
       5000
     );
   }
 
-  openToast() {
-    this.setState({ showSuccessMessage: true });
+  openToast(option) {
+    if (option === "success") {
+      this.setState({ showSuccessMessage: true });
+    }
+    if (option === "delete") {
+      this.setState({ showDeleteMessage: true });
+    }
   }
 
   openAddModal() {
@@ -228,6 +235,7 @@ export default class HomePage extends Component {
       .then((data) => {
         this.getArticles();
         this.closeDeleteModal();
+        this.showToast("The article has been successfully deleted!");
       })
       .catch((error) => {
         this.getArticles();
@@ -252,6 +260,7 @@ export default class HomePage extends Component {
       saying,
       content,
       showSuccessMessage,
+      showDeleteMessage,
       isToastShown,
       toastContent,
     } = this.state;
@@ -275,8 +284,9 @@ export default class HomePage extends Component {
 
     return (
       <>
-        <SuccessAlert
+        <ToastAlert
           showSuccessMessage={showSuccessMessage}
+          showDeleteMessage={showDeleteMessage}
           isToastShown={isToastShown}
           toastContent={toastContent}
         />
@@ -376,7 +386,7 @@ export default class HomePage extends Component {
                             type="submit"
                             disabled={isSubmitting}
                             className="button button--pink"
-                            onClick={this.openToast}
+                            onClick={() => this.openToast("success")}
                           >
                             Save
                           </button>
@@ -385,7 +395,7 @@ export default class HomePage extends Component {
                             type="submit"
                             disabled={isSubmitting}
                             className="button button--pink"
-                            onClick={this.openToast}
+                            onClick={() => this.openToast("success")}
                           >
                             Edit
                           </button>
@@ -479,14 +489,17 @@ export default class HomePage extends Component {
                   className="button cancel-alert-button"
                   onClick={this.closeDeleteModal}
                 >
-                  Cancel{" "}
+                  Cancel
                 </button>
                 <button
                   type="button"
                   className="delete-alert-button"
-                  onClick={this.deleteArticle}
+                  onClick={() => {
+                    this.deleteArticle();
+                    this.openToast("delete");
+                  }}
                 >
-                  Delete{" "}
+                  Delete
                 </button>
               </div>
             </div>
