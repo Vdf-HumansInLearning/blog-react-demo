@@ -113,17 +113,10 @@ button.open-modal {
 }
 
 ul.info__container {
-<<<<<<< Updated upstream
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
-  list-style-type: none;
-=======
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
     list-style-type: none;
->>>>>>> Stashed changes
 }
 
 li.info__item {
@@ -285,19 +278,8 @@ h2.title.modal-title {
 }
 
 input.input {
-<<<<<<< Updated upstream
-  font-family: "Cardo-Regular";
-  font-size: 18px;
-  width: 400px;
-  height: 35px;
-  margin-bottom: 25px;
-  padding-left: 10px;
-  border: 1px solid var(--primary-color-font);
-  border-radius: 5px;
-  background-color: var(--bg-color);
-  color: var(--font-color);
-=======
     font-family: "Cardo-Regular";
+    font-size: 18px;
     width: 400px;
     height: 35px;
     margin-bottom: 25px;
@@ -306,7 +288,6 @@ input.input {
     border-radius: 5px;
     background-color: var(--bg-color);
     color: var(--font-color);
->>>>>>> Stashed changes
 }
 
 input.input.margin {
@@ -314,18 +295,6 @@ input.input.margin {
 }
 
 textarea.textarea {
-<<<<<<< Updated upstream
-  width: 850px;
-  font-size: 18px;
-  line-height: 25px;
-  padding-left: 10px;
-  color: var(--font-color);
-  border: 1px solid var(--primary-color-font);
-  border-radius: 5px;
-  font-family: "Cardo-Regular", serif;
-  /* margin: 0px 75px; */
-  background-color: var(--bg-color);
-=======
     width: 850px;
     font-size: 18px;
     line-height: 25px;
@@ -334,9 +303,8 @@ textarea.textarea {
     border: 1px solid var(--primary-color-font);
     border-radius: 5px;
     font-family: "Cardo-Regular", serif;
-    margin: 0px 75px;
+    /* margin: 0px 75px; */
     background-color: var(--bg-color);
->>>>>>> Stashed changes
 }
 
 .modal__buttons {

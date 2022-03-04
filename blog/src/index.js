@@ -1,15 +1,8 @@
-<<<<<<< Updated upstream
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { BrowserRouter } from "react-router-dom";
-=======
 // import React from 'react';
 import ReactDOM from "react-dom";
 import "./index.css";
 // import App from './App';
-import reportWebVitals from "./reportWebVitals";
+
 // import { BrowserRouter } from "react-router-dom";
 
 import * as React from "react";
@@ -20,7 +13,6 @@ import DetailsPage from "./pages/DetailsPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ThemeSwitch from "./components/ThemeSwitch";
->>>>>>> Stashed changes
 
 ReactDOM.render(
   <React.StrictMode>

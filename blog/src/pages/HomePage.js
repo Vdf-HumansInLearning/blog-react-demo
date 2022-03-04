@@ -3,10 +3,7 @@ import React, { Component } from "react";
 import Article from "../components/Article";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
-<<<<<<< Updated upstream
 import ToastAlert from "../components/ToastAlert/ToastAlert";
-=======
->>>>>>> Stashed changes
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 export default class HomePage extends Component {
@@ -262,13 +259,10 @@ export default class HomePage extends Component {
       imgUrl,
       saying,
       content,
-<<<<<<< Updated upstream
       showSuccessMessage,
       showDeleteMessage,
       isToastShown,
       toastContent,
-=======
->>>>>>> Stashed changes
     } = this.state;
 
     const filteredArticles = articles.map((article) => (
@@ -361,21 +355,58 @@ export default class HomePage extends Component {
                 >
                   {({ isSubmitting }) => (
                     <Form>
-                      <Field type="text" name="title" className="input margin" placeholder="Please enter title" />
+                      <Field
+                        type="text"
+                        name="title"
+                        className="input margin"
+                        placeholder="Please enter title"
+                      />
                       <ErrorMessage name="title" component="div" />
-                      <Field type="text" name="tag" className="input " placeholder="Please enter tag"/>
+                      <Field
+                        type="text"
+                        name="tag"
+                        className="input "
+                        placeholder="Please enter tag"
+                      />
                       <ErrorMessage name="tag" component="div" />
-                      <Field type="text" name="author" className="input margin" placeholder="Please enter author"/>
+                      <Field
+                        type="text"
+                        name="author"
+                        className="input margin"
+                        placeholder="Please enter author"
+                      />
                       <ErrorMessage name="author" component="div" />
-                      <Field type="text" name="date" className="input " placeholder="Please enter date"/>
+                      <Field
+                        type="text"
+                        name="date"
+                        className="input "
+                        placeholder="Please enter date"
+                      />
                       <ErrorMessage name="date" component="div" />
-                      <Field type="text" name="imgUrl" className="input margin" placeholder="Please enter image url"/>
+                      <Field
+                        type="text"
+                        name="imgUrl"
+                        className="input margin"
+                        placeholder="Please enter image url"
+                      />
                       <ErrorMessage name="imgUrl" component="div" />
-                      <Field type="text" name="saying" className="input " placeholder="Please enter saying"/>
+                      <Field
+                        type="text"
+                        name="saying"
+                        className="input "
+                        placeholder="Please enter saying"
+                      />
                       <ErrorMessage name="saying" component="div" />
-                      <Field type="text" name="content" as="textarea" className="textarea" cols="28" rows="7" placeholder="Please enter content"/>
+                      <Field
+                        type="text"
+                        name="content"
+                        as="textarea"
+                        className="textarea"
+                        cols="28"
+                        rows="7"
+                        placeholder="Please enter content"
+                      />
                       <ErrorMessage name="content" component="div" />
-
 
                       <div className="modal__buttons">
                         <button
