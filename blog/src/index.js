@@ -1,11 +1,6 @@
-// import React from 'react';
+import React from 'react';
 import ReactDOM from "react-dom";
 import "./index.css";
-// import App from './App';
-
-// import { BrowserRouter } from "react-router-dom";
-
-import * as React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";

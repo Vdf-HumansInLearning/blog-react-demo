@@ -1,7 +1,5 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import ThemeSwitch from "../components/ThemeSwitch";
 
 class NotFound extends Component {
   constructor(props) {
@@ -21,7 +19,6 @@ class NotFound extends Component {
   render() {
     return (
       <>
-        {/* <ThemeSwitch /> */}
         <div className="error-box" id="error-box">
           <div className="error-info">
             <h1 className="error-message">Error 404 - Page not found!</h1>
