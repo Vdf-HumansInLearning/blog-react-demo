@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import Article from "../components/Article";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import SuccessAlert from "../components/SuccessAlert/SuccessAlert";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -28,6 +29,9 @@ export default class HomePage extends Component {
       id: null,
       isDeleteModalOpen: false,
       isShowLoad: true,
+      isToastShown: false,
+      showSuccessMessage:false,
+      toastContent: "",
     };
     this.getArticles = this.getArticles.bind(this);
     this.handleNext = this.handleNext.bind(this);
@@ -41,6 +45,7 @@ export default class HomePage extends Component {
     this.openDeleteModal = this.openDeleteModal.bind(this);
     this.closeDeleteModal = this.closeDeleteModal.bind(this);
     this.deleteArticle = this.deleteArticle.bind(this);
+    this.openToast = this.openToast.bind(this);
   }
   static propTypes = {
     second: string,
@@ -104,7 +109,6 @@ export default class HomePage extends Component {
   }
 
   createNewArticle(article) {
-
     fetch("http://localhost:3007/articles", {
       method: "POST",
       headers: {
@@ -119,12 +123,12 @@ export default class HomePage extends Component {
       .then((data) => {
         this.closeModalResetForm();
         this.getArticles();
+        this.showToast("The article has been created!");
       })
       .catch((err) => console.log(err));
   }
 
   editArticle(article, id) {
-
     fetch("http://localhost:3007/articles/" + id, {
       method: "PUT",
       headers: {
@@ -133,15 +137,32 @@ export default class HomePage extends Component {
       body: JSON.stringify({
         ...article,
         imgAlt: "photo",
-
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         this.closeModalResetForm();
         this.getArticles();
+        this.showToast("This article has been successfully edited!");
       })
       .catch((err) => console.log(err));
+  }
+
+  showToast(toastContent) {
+    this.setState({ isToastShown: true, toastContent: toastContent });
+    setTimeout(
+      () =>
+        this.setState({
+          isToastShown: false,
+          showSuccessMessage: false,
+          toastContent: "",
+        }),
+      5000
+    );
+  }
+
+  openToast() {
+    this.setState({ showSuccessMessage: true });
   }
 
   openAddModal() {
@@ -223,7 +244,16 @@ export default class HomePage extends Component {
       indexEnd,
       id,
       isShowLoad,
-      title, tag, author, date, imgUrl, saying, content
+      title,
+      tag,
+      author,
+      date,
+      imgUrl,
+      saying,
+      content,
+      showSuccessMessage,
+      isToastShown,
+      toastContent,
     } = this.state;
 
     const filteredArticles = articles.map((article) => (
@@ -245,6 +275,11 @@ export default class HomePage extends Component {
 
     return (
       <>
+        <SuccessAlert
+          showSuccessMessage={showSuccessMessage}
+          isToastShown={isToastShown}
+          toastContent={toastContent}
+        />
         <div>
           <div className="add__container">
             <button
@@ -257,14 +292,12 @@ export default class HomePage extends Component {
           </div>
         </div>
         {filteredArticles}
-
         <Footer
           handleNext={this.handleNext}
           handlePrevious={this.handlePrevious}
           isNext={isNext}
           isPrevious={isPrevious}
         />
-
         <div
           id="modal-box"
           className={
@@ -279,28 +312,35 @@ export default class HomePage extends Component {
               <div className="inputs__container">
                 <Formik
                   enableReinitialize
-                  initialValues={{ title, tag, author, date, imgUrl, saying, content }}
-                  validate={values => {
+                  initialValues={{
+                    title,
+                    tag,
+                    author,
+                    date,
+                    imgUrl,
+                    saying,
+                    content,
+                  }}
+                  validate={(values) => {
                     const errors = {};
                     if (!values.title) {
-                      errors.title = 'Required';
+                      errors.title = "Required";
                     }
                     if (!values.tag) {
-                      errors.tag = 'Required';
+                      errors.tag = "Required";
                     }
                     if (!values.author) {
-                      errors.author = 'Required';
+                      errors.author = "Required";
                     }
                     return errors;
                   }}
                   onSubmit={(values) => {
                     const { id } = this.state;
                     if (id) {
-                      this.editArticle(values, id)
+                      this.editArticle(values, id);
                     } else {
-                      this.createNewArticle(values)
+                      this.createNewArticle(values);
                     }
-
                   }}
                 >
                   {({ isSubmitting }) => (
@@ -335,8 +375,8 @@ export default class HomePage extends Component {
                           <button
                             type="submit"
                             disabled={isSubmitting}
-
                             className="button button--pink"
+                            onClick={this.openToast}
                           >
                             Save
                           </button>
@@ -345,6 +385,7 @@ export default class HomePage extends Component {
                             type="submit"
                             disabled={isSubmitting}
                             className="button button--pink"
+                            onClick={this.openToast}
                           >
                             Edit
                           </button>
@@ -353,8 +394,6 @@ export default class HomePage extends Component {
                     </Form>
                   )}
                 </Formik>
-
-
 
                 {/* <input
                   type="text"
@@ -416,12 +455,10 @@ export default class HomePage extends Component {
                 value={this.state.content}
                 onChange={this.handleChangeInput}
               ></textarea> */}
-
             </div>
             <div id="error-modal"></div>
           </div>
         </div>
-
         <div
           id="modal-alert"
           className={

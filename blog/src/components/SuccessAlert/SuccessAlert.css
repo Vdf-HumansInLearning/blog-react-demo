@@ -1,0 +1,24 @@
+.static {
+  width: 1280px;
+  margin: 0px auto;
+  overflow: hidden;
+  background-color: var(--bg-color);
+}
+
+.alert-success {
+  display: block;
+  width: 300px;
+  margin: 0px auto;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 5px;
+  z-index: 3;
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+  padding: 1rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}

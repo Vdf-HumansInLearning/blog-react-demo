@@ -80,7 +80,7 @@ app.post("/articles", (req, res) => {
     let saying = req.body.saying;
     let content = req.body.content
 
-    articlesList.push({
+    articlesList.unshift({
         "id": uuidv4(),
         "title": title,
         "tag": tag,
