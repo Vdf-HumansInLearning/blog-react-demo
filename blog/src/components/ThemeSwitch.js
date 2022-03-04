@@ -7,8 +7,7 @@ class ThemeSwitch extends Component {
       currentTheme: localStorage.getItem("theme")
         ? localStorage.getItem("theme")
         : null,
-      body: document.querySelector("body"),
-      day: true,
+      body: document.body,
     };
     this.switchTheme = this.switchTheme.bind(this);
   }
@@ -21,9 +20,6 @@ class ThemeSwitch extends Component {
       this.state.body.setAttribute("data-theme", "light");
       localStorage.setItem("theme", "light");
     }
-    this.setState({ day: !this.state.day }, () =>
-      localStorage.setItem("setTheme", this.state.day)
-    );
   }
 
   componentDidMount() {
