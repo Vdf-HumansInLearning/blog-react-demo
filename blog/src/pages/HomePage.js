@@ -3,7 +3,10 @@ import React, { Component } from "react";
 import Article from "../components/Article";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
+<<<<<<< Updated upstream
 import ToastAlert from "../components/ToastAlert/ToastAlert";
+=======
+>>>>>>> Stashed changes
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 export default class HomePage extends Component {
@@ -259,10 +262,13 @@ export default class HomePage extends Component {
       imgUrl,
       saying,
       content,
+<<<<<<< Updated upstream
       showSuccessMessage,
       showDeleteMessage,
       isToastShown,
       toastContent,
+=======
+>>>>>>> Stashed changes
     } = this.state;
 
     const filteredArticles = articles.map((article) => (
