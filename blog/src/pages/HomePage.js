@@ -333,14 +333,37 @@ export default class HomePage extends Component {
                   }}
                   validate={(values) => {
                     const errors = {};
+                    const regexJpg = /\.(jpe?g|png|gif|bmp)$/i;
+                    const upperCaseLetter = /([A-Z]{1})([a-z]+)(\s)([A-Z]{1})([a-z]+){1}(|\s)$/g;
                     if (!values.title) {
-                      errors.title = "Required";
+                      errors.title = "Please insert the title of your article!";
+                    }
+                    if (!values.title.length < 5) {
+                      errors.title = "The title must be at least 5 characters long!";
                     }
                     if (!values.tag) {
-                      errors.tag = "Required";
+                      errors.tag = "Please insert the tag of your article!";
+                    }
+                    if (!values.tag.length > 30) {
+                      errors.tag = "Please keep your tag under 30 characters!";
                     }
                     if (!values.author) {
-                      errors.author = "Required";
+                      errors.author = "Please insert the author of your article!";
+                    }
+                    if (!upperCaseLetter.test(values.author)) {
+                      errors.author = "Please use capital letters for the author's first and last name!";
+                    }
+                    if (!values.imgUrl) {
+                      errors.author = "Please insert an image url!";
+                    }
+                    if (!regexJpg.test(values.imgUrl)) {
+                      errors.author = "Please insert an image with jpg/jpeg/png/bmp/gif extension!";
+                    }
+                    if (!values.saying) {
+                      errors.author = "Please insert the main saying of your article!";
+                    }
+                    if (!values.content) {
+                      errors.author = "Please insert the content of your article!";
                     }
                     return errors;
                   }}
@@ -361,42 +384,42 @@ export default class HomePage extends Component {
                         className="input margin"
                         placeholder="Please enter title"
                       />
-                      <ErrorMessage name="title" component="div" />
+                      <ErrorMessage name="title" component="div" className="input__error" />
                       <Field
                         type="text"
                         name="tag"
                         className="input "
                         placeholder="Please enter tag"
                       />
-                      <ErrorMessage name="tag" component="div" />
+                      <ErrorMessage name="tag" component="div" className="input__error" />
                       <Field
                         type="text"
                         name="author"
                         className="input margin"
                         placeholder="Please enter author"
                       />
-                      <ErrorMessage name="author" component="div" />
+                      <ErrorMessage name="author" component="div" className="input__error" />
                       <Field
                         type="text"
                         name="date"
                         className="input "
                         placeholder="Please enter date"
                       />
-                      <ErrorMessage name="date" component="div" />
+                      <ErrorMessage name="date" component="div" className="input__error" />
                       <Field
                         type="text"
                         name="imgUrl"
                         className="input margin"
                         placeholder="Please enter image url"
                       />
-                      <ErrorMessage name="imgUrl" component="div" />
+                      <ErrorMessage name="imgUrl" component="div" className="input__error" />
                       <Field
                         type="text"
                         name="saying"
                         className="input "
                         placeholder="Please enter saying"
                       />
-                      <ErrorMessage name="saying" component="div" />
+                      <ErrorMessage name="saying" component="div" className="input__error" />
                       <Field
                         type="text"
                         name="content"
@@ -406,7 +429,7 @@ export default class HomePage extends Component {
                         rows="7"
                         placeholder="Please enter content"
                       />
-                      <ErrorMessage name="content" component="div" />
+                      <ErrorMessage name="content" component="div" className="input__error" />
 
                       <div className="modal__buttons">
                         <button
