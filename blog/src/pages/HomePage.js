@@ -47,6 +47,7 @@ export default class HomePage extends Component {
     this.closeDeleteModal = this.closeDeleteModal.bind(this);
     this.deleteArticle = this.deleteArticle.bind(this);
     this.openToast = this.openToast.bind(this);
+    this.handleSelectedFile = this.handleSelectedFile.bind(this);
   }
   static propTypes = {
     second: string,
@@ -117,6 +118,7 @@ export default class HomePage extends Component {
       },
       body: JSON.stringify({
         ...article,
+        imgUrl: article.imgUrl,
         imgAlt: "photo",
       }),
     })
@@ -137,6 +139,7 @@ export default class HomePage extends Component {
       },
       body: JSON.stringify({
         ...article,
+        imgUrl: "img/" + article.imgUrl,
         imgAlt: "photo",
       }),
     })
@@ -182,7 +185,6 @@ export default class HomePage extends Component {
       title: "",
       tag: "",
       author: "",
-      date: "",
       imgUrl: "",
       saying: "",
       content: "",
@@ -242,6 +244,12 @@ export default class HomePage extends Component {
         this.closeDeleteModal();
         console.error("Error:", error);
       });
+  }
+
+  handleSelectedFile(event) {
+    this.setState({
+      imgUrl: event.target.files[0].name,
+    });
   }
 
   render() {
@@ -332,37 +340,45 @@ export default class HomePage extends Component {
                   content,
                 }}
                 validate={(values) => {
+                  console.log(values);
                   const errors = {};
                   const regexJpg = /\.(jpe?g|png|gif|bmp)$/i;
-                  const upperCaseLetter = /([A-Z]{1})([a-z]+)(\s)([A-Z]{1})([a-z]+){1}(|\s)$/g;
+                  const upperCaseLetter =
+                    /([A-Z]{1})([a-z]+)(\s)([A-Z]{1})([a-z]+){1}(|\s)$/g;
                   if (!values.title) {
                     errors.title = "Please insert the title of your article!";
                   } else if (values.title.length < 5) {
-                    errors.title = "The title must be at least 5 characters long!";
+                    errors.title =
+                      "The title must be at least 5 characters long!";
                   }
                   if (!values.tag) {
                     errors.tag = "Please insert the tag of your article!";
                   }
                   if (values.tag.length > 30) {
+                    console.log(values.tag);
                     errors.tag = "Please keep your tag under 30 characters!";
                   }
                   if (!values.author) {
                     errors.author = "Please insert the author of your article!";
                   } else if (!upperCaseLetter.test(values.author)) {
-                    errors.author = "Please use capital letters for the author's first and last name!";
+                    errors.author =
+                      "Please use capital letters for the author's first and last name!";
                   }
                   if (!values.imgUrl) {
                     errors.imgUrl = "Please insert an image url!";
-                  }
-                  if (!regexJpg.test(values.imgUrl)) {
-                    errors.imgUrl = "Please insert an image with jpg/jpeg/png/bmp/gif extension!";
+                  } else if (!regexJpg.test(values.imgUrl)) {
+                    errors.imgUrl =
+                      "Please insert an image with jpg/jpeg/png/bmp/gif extension!";
                   }
                   if (!values.saying) {
-                    errors.saying = "Please insert the main saying of your article!";
+                    errors.saying =
+                      "Please insert the main saying of your article!";
                   }
                   if (!values.content) {
-                    errors.content = "Please insert the content of your article!";
+                    errors.content =
+                      "Please insert the content of your article!";
                   }
+                  console.log(errors);
                   return errors;
                 }}
                 onSubmit={(values) => {
@@ -383,7 +399,11 @@ export default class HomePage extends Component {
                         className="input margin"
                         placeholder="Please enter the title"
                       />
-                      <ErrorMessage name="title" component="div" className="input__error" />
+                      <ErrorMessage
+                        name="title"
+                        component="div"
+                        className="input__error"
+                      />
                     </div>
                     <div className="input__mb">
                       <Field
@@ -392,7 +412,11 @@ export default class HomePage extends Component {
                         className="input "
                         placeholder="Please enter tag"
                       />
-                      <ErrorMessage name="tag" component="div" className="input__error" />
+                      <ErrorMessage
+                        name="tag"
+                        component="div"
+                        className="input__error"
+                      />
                     </div>
                     <div className="input__mb">
                       <Field
@@ -401,25 +425,40 @@ export default class HomePage extends Component {
                         className="input margin"
                         placeholder="Please enter the author"
                       />
-                      <ErrorMessage name="author" component="div" className="input__error" />
+                      <ErrorMessage
+                        name="author"
+                        component="div"
+                        className="input__error"
+                      />
                     </div>
                     <div className="input__mb">
                       <Field
                         type="text"
                         name="date"
-                        className="input "
+                        className="input"
                         placeholder="Please enter the date"
+                        disabled
                       />
-                      <ErrorMessage name="date" component="div" className="input__error" />
+                      <ErrorMessage
+                        name="date"
+                        component="div"
+                        className="input__error"
+                      />
                     </div>
                     <div className="input__mb">
-                      <Field
-                        type="text"
+                      <input
+                        type="file"
                         name="imgUrl"
                         className="input margin"
                         placeholder="Please enter the image url"
+                        style={{ fontSize: 14, paddingTop: 5 }}
+                        onChange={(event) => this.handleSelectedFile(event)}
                       />
-                      <ErrorMessage name="imgUrl" component="div" className="input__error" />
+                      <ErrorMessage
+                        name="imgUrl"
+                        component="div"
+                        className="input__error"
+                      />
                     </div>
                     <div className="input__mb">
                       <Field
@@ -428,7 +467,11 @@ export default class HomePage extends Component {
                         className="input "
                         placeholder="Please enter the saying"
                       />
-                      <ErrorMessage name="saying" component="div" className="input__error" />
+                      <ErrorMessage
+                        name="saying"
+                        component="div"
+                        className="input__error"
+                      />
                     </div>
 
                     <div>
@@ -441,7 +484,11 @@ export default class HomePage extends Component {
                         rows="10"
                         placeholder="Please enter content"
                       />
-                      <ErrorMessage name="content" component="div" className="input__error" />
+                      <ErrorMessage
+                        name="content"
+                        component="div"
+                        className="input__error"
+                      />
                     </div>
                     <div className="modal__buttons">
                       <button
@@ -513,7 +560,6 @@ export default class HomePage extends Component {
                   </button>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
