@@ -294,10 +294,10 @@ export default class HomePage extends Component {
           <div className="add__container">
             <button
               type="button"
-              className="button open-modal"
+              className="button open-modal fas fa-plus"
               onClick={() => this.openAddModal()}
             >
-              + Add Article
+              Add Article
             </button>
           </div>
         </div>
@@ -319,72 +319,73 @@ export default class HomePage extends Component {
           <div className="add-modal">
             <div className="modal__content">
               <h2 className="title modal-title">Add/Edit article</h2>
-              <div className="inputs__container">
-                <Formik
-                  enableReinitialize
-                  initialValues={{
-                    title,
-                    tag,
-                    author,
-                    date,
-                    imgUrl,
-                    saying,
-                    content,
-                  }}
-                  validate={(values) => {
-                    const errors = {};
-                    const regexJpg = /\.(jpe?g|png|gif|bmp)$/i;
-                    const upperCaseLetter = /([A-Z]{1})([a-z]+)(\s)([A-Z]{1})([a-z]+){1}(|\s)$/g;
-                    if (!values.title) {
-                      errors.title = "Please insert the title of your article!";
-                    }
-                    if (!values.title.length < 5) {
-                      errors.title = "The title must be at least 5 characters long!";
-                    }
-                    if (!values.tag) {
-                      errors.tag = "Please insert the tag of your article!";
-                    }
-                    if (!values.tag.length > 30) {
-                      errors.tag = "Please keep your tag under 30 characters!";
-                    }
-                    if (!values.author) {
-                      errors.author = "Please insert the author of your article!";
-                    }
-                    if (!upperCaseLetter.test(values.author)) {
-                      errors.author = "Please use capital letters for the author's first and last name!";
-                    }
-                    if (!values.imgUrl) {
-                      errors.author = "Please insert an image url!";
-                    }
-                    if (!regexJpg.test(values.imgUrl)) {
-                      errors.author = "Please insert an image with jpg/jpeg/png/bmp/gif extension!";
-                    }
-                    if (!values.saying) {
-                      errors.author = "Please insert the main saying of your article!";
-                    }
-                    if (!values.content) {
-                      errors.author = "Please insert the content of your article!";
-                    }
-                    return errors;
-                  }}
-                  onSubmit={(values) => {
-                    const { id } = this.state;
-                    if (id) {
-                      this.editArticle(values, id);
-                    } else {
-                      this.createNewArticle(values);
-                    }
-                  }}
-                >
-                  {({ isSubmitting }) => (
-                    <Form>
+
+              <Formik
+                enableReinitialize
+                initialValues={{
+                  title,
+                  tag,
+                  author,
+                  date,
+                  imgUrl,
+                  saying,
+                  content,
+                }}
+                validate={(values) => {
+                  const errors = {};
+                  const regexJpg = /\.(jpe?g|png|gif|bmp)$/i;
+                  const upperCaseLetter = /([A-Z]{1})([a-z]+)(\s)([A-Z]{1})([a-z]+){1}(|\s)$/g;
+                  if (!values.title) {
+                    errors.title = "Please insert the title of your article!";
+                  } else if (values.title.length < 5) {
+                    errors.title = "The title must be at least 5 characters long!";
+                  }
+                  if (!values.tag) {
+                    errors.tag = "Please insert the tag of your article!";
+                  }
+                  if (values.tag.length > 30) {
+                    errors.tag = "Please keep your tag under 30 characters!";
+                  }
+                  if (!values.author) {
+                    errors.author = "Please insert the author of your article!";
+                  } else if (!upperCaseLetter.test(values.author)) {
+                    errors.author = "Please use capital letters for the author's first and last name!";
+                  }
+                  if (!values.imgUrl) {
+                    errors.imgUrl = "Please insert an image url!";
+                  }
+                  if (!regexJpg.test(values.imgUrl)) {
+                    errors.imgUrl = "Please insert an image with jpg/jpeg/png/bmp/gif extension!";
+                  }
+                  if (!values.saying) {
+                    errors.saying = "Please insert the main saying of your article!";
+                  }
+                  if (!values.content) {
+                    errors.content = "Please insert the content of your article!";
+                  }
+                  return errors;
+                }}
+                onSubmit={(values) => {
+                  const { id } = this.state;
+                  if (id) {
+                    this.editArticle(values, id);
+                  } else {
+                    this.createNewArticle(values);
+                  }
+                }}
+              >
+                {({ isSubmitting }) => (
+                  <Form className="inputs__container">
+                    <div className="input__mb">
                       <Field
                         type="text"
                         name="title"
                         className="input margin"
-                        placeholder="Please enter title"
+                        placeholder="Please enter the title"
                       />
                       <ErrorMessage name="title" component="div" className="input__error" />
+                    </div>
+                    <div className="input__mb">
                       <Field
                         type="text"
                         name="tag"
@@ -392,137 +393,87 @@ export default class HomePage extends Component {
                         placeholder="Please enter tag"
                       />
                       <ErrorMessage name="tag" component="div" className="input__error" />
+                    </div>
+                    <div className="input__mb">
                       <Field
                         type="text"
                         name="author"
                         className="input margin"
-                        placeholder="Please enter author"
+                        placeholder="Please enter the author"
                       />
                       <ErrorMessage name="author" component="div" className="input__error" />
+                    </div>
+                    <div className="input__mb">
                       <Field
                         type="text"
                         name="date"
                         className="input "
-                        placeholder="Please enter date"
+                        placeholder="Please enter the date"
                       />
                       <ErrorMessage name="date" component="div" className="input__error" />
+                    </div>
+                    <div className="input__mb">
                       <Field
                         type="text"
                         name="imgUrl"
                         className="input margin"
-                        placeholder="Please enter image url"
+                        placeholder="Please enter the image url"
                       />
                       <ErrorMessage name="imgUrl" component="div" className="input__error" />
+                    </div>
+                    <div className="input__mb">
                       <Field
                         type="text"
                         name="saying"
                         className="input "
-                        placeholder="Please enter saying"
+                        placeholder="Please enter the saying"
                       />
                       <ErrorMessage name="saying" component="div" className="input__error" />
+                    </div>
+
+                    <div>
                       <Field
                         type="text"
                         name="content"
                         as="textarea"
                         className="textarea"
                         cols="28"
-                        rows="7"
+                        rows="10"
                         placeholder="Please enter content"
                       />
                       <ErrorMessage name="content" component="div" className="input__error" />
-
-                      <div className="modal__buttons">
+                    </div>
+                    <div className="modal__buttons">
+                      <button
+                        type="button"
+                        className="button close-modal"
+                        onClick={this.closeModalResetForm}
+                      >
+                        Cancel
+                      </button>
+                      {id === null ? (
                         <button
-                          type="button"
-                          className="button close-modal"
-                          onClick={this.closeModalResetForm}
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="button button--pink"
+                          onClick={() => this.openToast("success")}
                         >
-                          Cancel
+                          Save
                         </button>
-                        {id === null ? (
-                          <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className="button button--pink"
-                            onClick={() => this.openToast("success")}
-                          >
-                            Save
-                          </button>
-                        ) : (
-                          <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className="button button--pink"
-                            onClick={() => this.openToast("success")}
-                          >
-                            Edit
-                          </button>
-                        )}
-                      </div>
-                    </Form>
-                  )}
-                </Formik>
-
-                {/* <input
-                  type="text"
-                  name="title"
-                  className="input margin"
-                  placeholder="Please enter title"
-                  value={this.state.title}
-                  onChange={this.handleChangeInput}
-                />
-                <input
-                  type="text"
-                  name="tag"
-                  className="input"
-                  placeholder="Please enter tag"
-                  value={this.state.tag}
-                  onChange={this.handleChangeInput}
-                />
-                <input
-                  type="text"
-                  name="author"
-                  className="input margin"
-                  placeholder="Please enter author"
-                  value={this.state.author}
-                  onChange={this.handleChangeInput}
-                />
-                <input
-                  type="text"
-                  name="date"
-                  className="input"
-                  placeholder="February 17, 2022"
-                  disabled={true}
-                  value={this.state.date}
-                  onChange={this.handleChangeInput}
-                />
-                <input
-                  type="text"
-                  name="imgUrl"
-                  className="input margin"
-                  placeholder="Please enter image url"
-                  value={this.state.imgUrl}
-                  onChange={this.handleChangeInput}
-                />
-                <input
-                  type="text"
-                  name="saying"
-                  className="input"
-                  placeholder="Please enter saying"
-                  value={this.state.saying}
-                  onChange={this.handleChangeInput}
-                /> */}
-              </div>
-              {/* <textarea
-                name="content"
-                className="textarea"
-                id="textarea"
-                cols="28"
-                rows="7"
-                placeholder="Please enter content"
-                value={this.state.content}
-                onChange={this.handleChangeInput}
-              ></textarea> */}
+                      ) : (
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="button button--pink"
+                          onClick={() => this.openToast("success")}
+                        >
+                          Edit
+                        </button>
+                      )}
+                    </div>
+                  </Form>
+                )}
+              </Formik>
             </div>
             <div id="error-modal"></div>
           </div>
@@ -537,29 +488,32 @@ export default class HomePage extends Component {
         >
           <div id="div-modal-alert" className="add-modal add-modal--small">
             <div className="modal__content">
-              <h1 className="title modal-title">Delete Article</h1>
-              <p className="alert-delete-p">
-                Are you sure you want to delete this article?
-              </p>
-              <div className="modal__buttons">
-                <button
-                  type="button"
-                  className="button cancel-alert-button"
-                  onClick={this.closeDeleteModal}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  className="delete-alert-button"
-                  onClick={() => {
-                    this.deleteArticle();
-                    this.openToast("delete");
-                  }}
-                >
-                  Delete
-                </button>
+              <div className="alert-container">
+                <h1 className="title modal-title">Delete Article</h1>
+                <p className="alert-delete-p">
+                  Are you sure you want to delete this article?
+                </p>
+                <div className="clearfix">
+                  <button
+                    type="button"
+                    className="button cancel-alert-button"
+                    onClick={this.closeDeleteModal}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    className="delete-alert-button"
+                    onClick={() => {
+                      this.deleteArticle();
+                      this.openToast("delete");
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
+
             </div>
           </div>
         </div>
