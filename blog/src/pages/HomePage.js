@@ -137,7 +137,7 @@ export default class HomePage extends Component {
       },
       body: JSON.stringify({
         ...article,
-        imgUrl: "img/" + article.imgUrl,
+        imgUrl: article.imgUrl,
         imgAlt: "photo",
       }),
     })
@@ -183,6 +183,7 @@ export default class HomePage extends Component {
       title: "",
       tag: "",
       author: "",
+      date: "",
       imgUrl: "",
       saying: "",
       content: "",
@@ -446,7 +447,7 @@ export default class HomePage extends Component {
                         // format="MMMM dd, yyyy"
                         // pattern="\d{4}-\d{2}-\d{2}"
                         // min={new Date()}
-                        
+
                         // locale="ro"
                       />
 
@@ -464,7 +465,6 @@ export default class HomePage extends Component {
                         placeholder="Please enter the image url"
                         style={{ fontSize: 14, paddingTop: 5 }}
                         onChange={(event) => this.handleSelectedFile(event)}
-                        value={imgUrl}
                       />
                       <ErrorMessage
                         name="imgUrl"
