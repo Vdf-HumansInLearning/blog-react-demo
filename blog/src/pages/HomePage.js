@@ -371,20 +371,20 @@ export default class HomePage extends Component {
                   const upperCaseLetter =
                     /([A-Z]{1})([a-z]+)(\s)([A-Z]{1})([a-z]+){1}(|\s)$/g;
                   if (!values.title) {
-                    errors.title = "Please insert the title of your article!";
+                    errors.title = "Please enter the title of your article!";
                   } else if (values.title.length < 5) {
                     errors.title =
                       "The title must be at least 5 characters long!";
                   }
                   if (!values.tag) {
-                    errors.tag = "Please insert the tag of your article!";
+                    errors.tag = "Please enter the tag of your article!";
                   }
                   if (values.tag.length > 30) {
                     console.log(values.tag);
                     errors.tag = "Please keep your tag under 30 characters!";
                   }
                   if (!values.author) {
-                    errors.author = "Please insert the author of your article!";
+                    errors.author = "Please enter the author of your article!";
                   } else if (!upperCaseLetter.test(values.author)) {
                     errors.author =
                       "Please use capital letters for the author's first and last name!";
@@ -393,18 +393,18 @@ export default class HomePage extends Component {
                     errors.date = "Please choose a date!";
                   }
                   if (!values.imgUrl) {
-                    errors.imgUrl = "Please insert an image url!";
+                    errors.imgUrl = "Please enter an image url!";
                   } else if (!regexJpg.test(values.imgUrl)) {
                     errors.imgUrl =
-                      "Please insert an image with jpg/jpeg/png/bmp/gif extension!";
+                      "Please enter an image with jpg/jpeg/png/bmp/gif extension!";
                   }
                   if (!values.saying) {
                     errors.saying =
-                      "Please insert the main saying of your article!";
+                      "Please enter the main saying of your article!";
                   }
                   if (!values.content) {
                     errors.content =
-                      "Please insert the content of your article!";
+                      "Please enter the content of your article!";
                   }
 
                   if (this.state.isModalOpen === false) {
@@ -429,14 +429,14 @@ export default class HomePage extends Component {
                         name="title"
                         className={
                           errors.title && touched.title
-                            ? "input margin input__fail"
-                            : "input margin"
+                            ? "input  input__fail"
+                            : "input"
                           // ? (!errors.title && touched.title
                           //   ? "input margin input__success"
                           //   : "input margin")
                           // : null
                         }
-                        placeholder="Please enter the title"
+                        placeholder="Please enter title"
                         value={title}
                         onChange={this.handleChangeInput}
                       />
@@ -471,10 +471,10 @@ export default class HomePage extends Component {
                         name="author"
                         className={
                           errors.author && touched.author
-                            ? "input margin input__fail"
-                            : "input margin"
+                            ? "input input__fail"
+                            : "input"
                         }
-                        placeholder="Please enter the author"
+                        placeholder="Please enter author"
                         value={author}
                         onChange={this.handleChangeInput}
                       />
@@ -515,8 +515,8 @@ export default class HomePage extends Component {
                         name="imgUrl"
                         className={
                           errors.imgUrl && touched.imgUrl
-                            ? "input margin input__fail"
-                            : "input margin"
+                            ? "input input__fail"
+                            : "input"
                         }
                         placeholder="Please enter the image url"
                         style={{ fontSize: 14, paddingTop: 5 }}
@@ -537,7 +537,7 @@ export default class HomePage extends Component {
                             ? "input input__fail"
                             : "input"
                         }
-                        placeholder="Please enter the saying"
+                        placeholder="Please enter saying"
                         value={saying}
                         onChange={this.handleChangeInput}
                       />
