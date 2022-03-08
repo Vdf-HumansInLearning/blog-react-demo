@@ -20,9 +20,7 @@ export default class HomePage extends Component {
       title: "",
       tag: "",
       author: "",
-      date: `${new Date().toLocaleString("default", {
-        month: "long",
-      })} ${new Date().getDate()}, ${new Date().getFullYear()}`,
+      date: "",
       imgUrl: "",
       saying: "",
       content: "",
@@ -398,6 +396,8 @@ export default class HomePage extends Component {
                         name="title"
                         className="input margin"
                         placeholder="Please enter the title"
+                        value={title}
+                        onChange={this.handleChangeInput}
                       />
                       <ErrorMessage
                         name="title"
@@ -411,6 +411,8 @@ export default class HomePage extends Component {
                         name="tag"
                         className="input "
                         placeholder="Please enter tag"
+                        value={tag}
+                        onChange={this.handleChangeInput}
                       />
                       <ErrorMessage
                         name="tag"
@@ -424,6 +426,8 @@ export default class HomePage extends Component {
                         name="author"
                         className="input margin"
                         placeholder="Please enter the author"
+                        value={author}
+                        onChange={this.handleChangeInput}
                       />
                       <ErrorMessage
                         name="author"
@@ -433,12 +437,19 @@ export default class HomePage extends Component {
                     </div>
                     <div className="input__mb">
                       <Field
-                        type="text"
+                        type="date"
                         name="date"
-                        className="input"
-                        placeholder="Please enter the date"
-                        disabled
+                        className="input "
+                        placeholder="Please choose the date"
+                        value={date}
+                        onChange={this.handleChangeInput}
+                        // format="MMMM dd, yyyy"
+                        // pattern="\d{4}-\d{2}-\d{2}"
+                        // min={new Date()}
+                        
+                        // locale="ro"
                       />
+
                       <ErrorMessage
                         name="date"
                         component="div"
@@ -453,6 +464,7 @@ export default class HomePage extends Component {
                         placeholder="Please enter the image url"
                         style={{ fontSize: 14, paddingTop: 5 }}
                         onChange={(event) => this.handleSelectedFile(event)}
+                        value={imgUrl}
                       />
                       <ErrorMessage
                         name="imgUrl"
@@ -466,6 +478,8 @@ export default class HomePage extends Component {
                         name="saying"
                         className="input "
                         placeholder="Please enter the saying"
+                        value={saying}
+                        onChange={this.handleChangeInput}
                       />
                       <ErrorMessage
                         name="saying"
@@ -483,6 +497,8 @@ export default class HomePage extends Component {
                         cols="28"
                         rows="10"
                         placeholder="Please enter content"
+                        value={content}
+                        onChange={this.handleChangeInput}
                       />
                       <ErrorMessage
                         name="content"
