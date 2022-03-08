@@ -109,6 +109,17 @@ export default class HomePage extends Component {
   }
 
   createNewArticle(article) {
+    const dateParsed = new Date(this.state.date);
+    const today = new Date();
+
+    let dd = String(dateParsed.getDate()).padStart(2, "0");
+    let mm = dateParsed.toLocaleString("default", {
+      month: "long",
+    });
+    let yyyy = dateParsed.getFullYear();
+
+    let date = mm + " " + dd + ", " + yyyy;
+
     fetch("http://localhost:3007/articles", {
       method: "POST",
       headers: {
@@ -118,18 +129,32 @@ export default class HomePage extends Component {
         ...article,
         imgUrl: article.imgUrl,
         imgAlt: "photo",
+        date: date,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         this.closeModalResetForm();
-        this.getArticles();
-        this.showToast("The article has been created!");
+        if (dateParsed.getTime() <= today.getTime()) {
+          this.getArticles();
+          this.showToast("The article has been created!");
+        } else {
+          console.log("not possible");
+        }
       })
       .catch((err) => console.log(err));
   }
 
   editArticle(article, id) {
+    const dateParsed = new Date(this.state.date);
+    let dd = String(dateParsed.getDate()).padStart(2, "0");
+    let mm = dateParsed.toLocaleString("default", {
+      month: "long",
+    });
+    let yyyy = dateParsed.getFullYear();
+
+    let date = mm + " " + dd + ", " + yyyy;
+
     fetch("http://localhost:3007/articles/" + id, {
       method: "PUT",
       headers: {
@@ -139,6 +164,7 @@ export default class HomePage extends Component {
         ...article,
         imgUrl: article.imgUrl,
         imgAlt: "photo",
+        date: date,
       }),
     })
       .then((res) => res.json())
@@ -381,8 +407,8 @@ export default class HomePage extends Component {
                       "Please insert the content of your article!";
                   }
 
-                  if(this.state.isModalOpen === false) {
-                    console.log('apelata')
+                  if (this.state.isModalOpen === false) {
+                    console.log("apelata");
                   }
                   return errors;
                 }}
@@ -402,15 +428,13 @@ export default class HomePage extends Component {
                         type="text"
                         name="title"
                         className={
-                          (
-                            errors.title && touched.title
-                              ? "input margin input__fail"
-                              : "input margin"
-                          )
-                            // ? (!errors.title && touched.title
-                            //   ? "input margin input__success"
-                            //   : "input margin")
-                            // : null
+                          errors.title && touched.title
+                            ? "input margin input__fail"
+                            : "input margin"
+                          // ? (!errors.title && touched.title
+                          //   ? "input margin input__success"
+                          //   : "input margin")
+                          // : null
                         }
                         placeholder="Please enter the title"
                         value={title}
