@@ -363,6 +363,9 @@ export default class HomePage extends Component {
                     errors.author =
                       "Please use capital letters for the author's first and last name!";
                   }
+                  if (!values.date) {
+                    errors.date = "Please choose a date!";
+                  }
                   if (!values.imgUrl) {
                     errors.imgUrl = "Please insert an image url!";
                   } else if (!regexJpg.test(values.imgUrl)) {
@@ -377,7 +380,10 @@ export default class HomePage extends Component {
                     errors.content =
                       "Please insert the content of your article!";
                   }
-                  console.log(errors);
+
+                  if(this.state.isModalOpen === false) {
+                    console.log('apelata')
+                  }
                   return errors;
                 }}
                 onSubmit={(values) => {
@@ -389,13 +395,23 @@ export default class HomePage extends Component {
                   }
                 }}
               >
-                {({ isSubmitting }) => (
+                {({ isSubmitting, errors, touched }) => (
                   <Form className="inputs__container">
                     <div className="input__mb">
                       <Field
                         type="text"
                         name="title"
-                        className="input margin"
+                        className={
+                          (
+                            errors.title && touched.title
+                              ? "input margin input__fail"
+                              : "input margin"
+                          )
+                            // ? (!errors.title && touched.title
+                            //   ? "input margin input__success"
+                            //   : "input margin")
+                            // : null
+                        }
                         placeholder="Please enter the title"
                         value={title}
                         onChange={this.handleChangeInput}
@@ -410,7 +426,11 @@ export default class HomePage extends Component {
                       <Field
                         type="text"
                         name="tag"
-                        className="input "
+                        className={
+                          errors.tag && touched.tag
+                            ? "input input__fail"
+                            : "input"
+                        }
                         placeholder="Please enter tag"
                         value={tag}
                         onChange={this.handleChangeInput}
@@ -425,7 +445,11 @@ export default class HomePage extends Component {
                       <Field
                         type="text"
                         name="author"
-                        className="input margin"
+                        className={
+                          errors.author && touched.author
+                            ? "input margin input__fail"
+                            : "input margin"
+                        }
                         placeholder="Please enter the author"
                         value={author}
                         onChange={this.handleChangeInput}
@@ -440,7 +464,11 @@ export default class HomePage extends Component {
                       <Field
                         type="date"
                         name="date"
-                        className="input "
+                        className={
+                          errors.date && touched.date
+                            ? "input input__fail"
+                            : "input"
+                        }
                         placeholder="Please choose the date"
                         value={date}
                         onChange={this.handleChangeInput}
@@ -461,7 +489,11 @@ export default class HomePage extends Component {
                       <input
                         type="file"
                         name="imgUrl"
-                        className="input margin"
+                        className={
+                          errors.imgUrl && touched.imgUrl
+                            ? "input margin input__fail"
+                            : "input margin"
+                        }
                         placeholder="Please enter the image url"
                         style={{ fontSize: 14, paddingTop: 5 }}
                         onChange={(event) => this.handleSelectedFile(event)}
@@ -476,7 +508,11 @@ export default class HomePage extends Component {
                       <Field
                         type="text"
                         name="saying"
-                        className="input "
+                        className={
+                          errors.saying && touched.saying
+                            ? "input input__fail"
+                            : "input"
+                        }
                         placeholder="Please enter the saying"
                         value={saying}
                         onChange={this.handleChangeInput}
@@ -493,7 +529,11 @@ export default class HomePage extends Component {
                         type="text"
                         name="content"
                         as="textarea"
-                        className="textarea"
+                        className={
+                          errors.content && touched.content
+                            ? "textarea input__fail"
+                            : "textarea"
+                        }
                         cols="28"
                         rows="10"
                         placeholder="Please enter content"
