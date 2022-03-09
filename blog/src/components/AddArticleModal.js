@@ -100,15 +100,20 @@ export default function AddArticleModal({
                     name="title"
                     className={
                       errors.title && touched.title
-                        ? "input input__fail"
-                        : !errors.title && title && !id
-                        ? "input input__success"
+                        ? "input input__fail  "
                         : "input"
                     }
                     placeholder="Please enter the title"
                     value={title}
                     onChange={handleChangeInput}
                   />
+                  <i className={
+                    errors.title && touched.title
+                      ? "icon-cancel-circled  " : ""
+                  }
+                  >
+                  </i>
+
                   <ErrorMessage
                     name="title"
                     component="div"
@@ -121,15 +126,18 @@ export default function AddArticleModal({
                     name="tag"
                     className={
                       errors.tag && touched.tag
-                        ? "input input__fail"
-                        : !errors.tag && tag && !id
-                        ? "input input__success"
-                        : "input"
+                        ? "input input__fail" : "input"
                     }
                     placeholder="Please enter tag"
                     value={tag}
                     onChange={handleChangeInput}
                   />
+                  <i className={
+                    errors.tag && touched.tag
+                      ? "icon-cancel-circled  " : ""
+                  }
+                  >
+                  </i>
                   <ErrorMessage
                     name="tag"
                     component="div"
@@ -142,15 +150,18 @@ export default function AddArticleModal({
                     name="author"
                     className={
                       errors.author && touched.author
-                        ? "input input__fail"
-                        : !errors.author && author && !id
-                        ? "input input__success"
-                        : "input"
+                        ? "input input__fail" : "input"
                     }
                     placeholder="Please enter the author"
                     value={author}
                     onChange={handleChangeInput}
                   />
+                  <i className={
+                    errors.author && touched.author
+                      ? "icon-cancel-circled  " : ""
+                  }
+                  >
+                  </i>
                   <ErrorMessage
                     name="author"
                     component="div"
@@ -163,21 +174,23 @@ export default function AddArticleModal({
                     name="date"
                     className={
                       errors.date && touched.date
-                        ? "input input__fail"
-                        : !errors.date && date && !id
-                        ? "input input__success"
-                        : "input"
+                        ? "input input__fail" : "input"
                     }
                     placeholder="Please choose the date"
                     value={date}
                     onChange={handleChangeInput}
-                    // format="MMMM dd, yyyy"
-                    // pattern="\d{4}-\d{2}-\d{2}"
-                    // min={new Date()}
+                  // format="MMMM dd, yyyy"
+                  // pattern="\d{4}-\d{2}-\d{2}"
+                  // min={new Date()}
 
-                    // locale="ro"
+                  // locale="ro"
                   />
-
+                  <i className={
+                    errors.date && touched.date
+                      ? "icon-cancel-circled  " : ""
+                  }
+                  >
+                  </i>
                   <ErrorMessage
                     name="date"
                     component="div"
@@ -190,15 +203,18 @@ export default function AddArticleModal({
                     name="imgUrl"
                     className={
                       errors.imgUrl && touched.imgUrl
-                        ? "input input__fail"
-                        : !errors.imgUrl && imgUrl && !id
-                        ? "input input__success"
-                        : "input"
+                        ? "input input__fail" : "input"
                     }
                     placeholder="Please enter the image url"
                     style={{ fontSize: 14, paddingTop: 5 }}
                     onChange={(event) => handleSelectedFile(event)}
                   />
+                  <i className={
+                    errors.imgUrl && touched.imgUrl
+                      ? "icon-cancel-circled  " : ""
+                  }
+                  >
+                  </i>
                   <ErrorMessage
                     name="imgUrl"
                     component="div"
@@ -211,15 +227,19 @@ export default function AddArticleModal({
                     name="saying"
                     className={
                       errors.saying && touched.saying
-                        ? "input input__fail"
-                        : !errors.saying && saying && !id
-                        ? "input input__success"
-                        : "input"
+                        ? "input input__fail" : "input"
                     }
                     placeholder="Please enter the saying"
                     value={saying}
                     onChange={handleChangeInput}
                   />
+                  <i className={
+                    errors.saying && touched.saying
+                      ? "icon-cancel-circled  " : ""
+                  }
+                  >
+                  </i>
+
                   <ErrorMessage
                     name="saying"
                     component="div"
@@ -227,17 +247,14 @@ export default function AddArticleModal({
                   />
                 </div>
 
-                <div>
+                <div className="textarea-div">
                   <Field
                     type="text"
                     name="content"
                     as="textarea"
                     className={
                       errors.content && touched.content
-                        ? "textarea input__fail"
-                        : !errors.content && content && !id
-                        ? "textarea input__success"
-                        : "textarea"
+                        ? "textarea input__fail" : "textarea"
                     }
                     cols="28"
                     rows="10"
@@ -245,6 +262,12 @@ export default function AddArticleModal({
                     value={content}
                     onChange={handleChangeInput}
                   />
+                  <i className={
+                    errors.content && touched.content
+                      ? "icon-cancel-circled  " : ""
+                  }
+                  >
+                  </i>
                   <ErrorMessage
                     name="content"
                     component="div"

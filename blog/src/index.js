@@ -8,6 +8,7 @@ import DetailsPage from "./pages/DetailsPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ThemeSwitch from "./components/ThemeSwitch";
+import "./fontello-080f9b95/fontello-080f9b95/css/social.css"
 
 ReactDOM.render(
   <React.StrictMode>
