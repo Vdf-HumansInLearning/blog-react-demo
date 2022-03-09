@@ -12,6 +12,7 @@
     --sun: #fff;
     --disabled-color: #e6e6e6;
     --error-color: #c00033;
+    --green-color: #65e29b;
     --background-image: url("/public/img/Valley-light.jpg");
 }
 
@@ -25,6 +26,7 @@
     --sun: #9b9b9b;
     --disabled-color: #494e5c;
     --error-color: #c00033;
+    --green-color: #65e29b;
     --background-image: url("/public/img/Valley-dark.jpg");
 }
 
@@ -295,24 +297,20 @@ input.input {
 }
 
 .input.input__fail {
-    border: 1px solid var(--error-color);
+    border: 2px solid var(--error-color);
 }
 
 .input.input__success {
-    border: 1px solid green;
+    border: 2px solid var(--green-color);
 }
 
 .input.margin.input__fail {
-    border: 1px solid var(--error-color);
+    border: 2px solid var(--error-color);
 }
 
 .input.margin.input__success {
-    border: 1px solid green;
+    border: 2px solid var(--green-color);
 }
-
-/* input.input.margin {
-    margin-right: 50px;
-} */
 
 .input__mb {
     margin-bottom: 25px;
@@ -343,7 +341,11 @@ textarea.textarea {
 }
 
 .textarea.input__fail {
-    border: 1px solid var(--error-color);
+    border: 2px solid var(--error-color);
+}
+
+.textarea.input__success {
+    border: 2px solid var(--green-color);
 }
 
 .modal__buttons {
@@ -351,10 +353,6 @@ textarea.textarea {
     margin-bottom: 50px;
     display: flex;
     justify-content: space-around;
-}
-
-.close-modal {
-    color: var(--font-color) !important;
 }
 
 button.button.button--pink {

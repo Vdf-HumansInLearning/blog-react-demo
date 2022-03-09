@@ -101,7 +101,7 @@ export default function AddArticleModal({
                     className={
                       errors.title && touched.title
                         ? "input input__fail"
-                        : !errors.title && touched.title
+                        : !errors.title && title && !id
                         ? "input input__success"
                         : "input"
                     }
@@ -120,7 +120,11 @@ export default function AddArticleModal({
                     type="text"
                     name="tag"
                     className={
-                      errors.tag && touched.tag ? "input input__fail" : "input"
+                      errors.tag && touched.tag
+                        ? "input input__fail"
+                        : !errors.tag && tag && !id
+                        ? "input input__success"
+                        : "input"
                     }
                     placeholder="Please enter tag"
                     value={tag}
@@ -139,6 +143,8 @@ export default function AddArticleModal({
                     className={
                       errors.author && touched.author
                         ? "input input__fail"
+                        : !errors.author && author && !id
+                        ? "input input__success"
                         : "input"
                     }
                     placeholder="Please enter the author"
@@ -158,6 +164,8 @@ export default function AddArticleModal({
                     className={
                       errors.date && touched.date
                         ? "input input__fail"
+                        : !errors.date && date && !id
+                        ? "input input__success"
                         : "input"
                     }
                     placeholder="Please choose the date"
@@ -183,6 +191,8 @@ export default function AddArticleModal({
                     className={
                       errors.imgUrl && touched.imgUrl
                         ? "input input__fail"
+                        : !errors.imgUrl && imgUrl && !id
+                        ? "input input__success"
                         : "input"
                     }
                     placeholder="Please enter the image url"
@@ -202,6 +212,8 @@ export default function AddArticleModal({
                     className={
                       errors.saying && touched.saying
                         ? "input input__fail"
+                        : !errors.saying && saying && !id
+                        ? "input input__success"
                         : "input"
                     }
                     placeholder="Please enter the saying"
@@ -223,6 +235,8 @@ export default function AddArticleModal({
                     className={
                       errors.content && touched.content
                         ? "textarea input__fail"
+                        : !errors.content && content && !id
+                        ? "textarea input__success"
                         : "textarea"
                     }
                     cols="28"
@@ -240,7 +254,7 @@ export default function AddArticleModal({
                 <div className="modal__buttons">
                   <button
                     type="button"
-                    className="button close-modal"
+                    className="button"
                     onClick={closeModalResetForm}
                   >
                     Cancel
