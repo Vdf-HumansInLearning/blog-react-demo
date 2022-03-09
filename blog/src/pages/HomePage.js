@@ -4,7 +4,7 @@ import Article from "../components/Article";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import ToastAlert from "../components/ToastAlert/ToastAlert";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import AddArticleModal from "../components/AddArticleModal";
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -283,15 +283,7 @@ export default class HomePage extends Component {
       articles,
       indexStart,
       indexEnd,
-      id,
       isShowLoad,
-      title,
-      tag,
-      author,
-      date,
-      imgUrl,
-      saying,
-      content,
       showSuccessMessage,
       showDeleteMessage,
       isToastShown,
@@ -341,270 +333,24 @@ export default class HomePage extends Component {
           isNext={isNext}
           isPrevious={isPrevious}
         />
-        <div
-          id="modal-box"
-          className={
-            this.state.isModalOpen
-              ? "modal__overlay modal__overlay--open"
-              : "modal__overlay"
-          }
-        >
-          <div className="add-modal">
-            <div className="modal__content">
-              <h2 className="title modal-title">Add/Edit article</h2>
 
-              <Formik
-                enableReinitialize
-                initialValues={{
-                  title,
-                  tag,
-                  author,
-                  date,
-                  imgUrl,
-                  saying,
-                  content,
-                }}
-                validate={(values) => {
-                  console.log(values);
-                  const errors = {};
-                  const regexJpg = /\.(jpe?g|png|gif|bmp)$/i;
-                  const upperCaseLetter =
-                    /([A-Z]{1})([a-z]+)(\s)([A-Z]{1})([a-z]+){1}(|\s)$/g;
-                  if (!values.title) {
-                    errors.title = "Please enter the title of your article!";
-                  } else if (values.title.length < 5) {
-                    errors.title =
-                      "The title must be at least 5 characters long!";
-                  }
-                  if (!values.tag) {
-                    errors.tag = "Please enter the tag of your article!";
-                  }
-                  if (values.tag.length > 30) {
-                    console.log(values.tag);
-                    errors.tag = "Please keep your tag under 30 characters!";
-                  }
-                  if (!values.author) {
-                    errors.author = "Please enter the author of your article!";
-                  } else if (!upperCaseLetter.test(values.author)) {
-                    errors.author =
-                      "Please use capital letters for the author's first and last name!";
-                  }
-                  if (!values.date) {
-                    errors.date = "Please choose a date!";
-                  }
-                  if (!values.imgUrl) {
-                    errors.imgUrl = "Please enter an image url!";
-                  } else if (!regexJpg.test(values.imgUrl)) {
-                    errors.imgUrl =
-                      "Please enter an image with jpg/jpeg/png/bmp/gif extension!";
-                  }
-                  if (!values.saying) {
-                    errors.saying =
-                      "Please enter the main saying of your article!";
-                  }
-                  if (!values.content) {
-                    errors.content =
-                      "Please enter the content of your article!";
-                  }
-
-                  if (this.state.isModalOpen === false) {
-                    console.log("apelata");
-                  }
-                  return errors;
-                }}
-                onSubmit={(values) => {
-                  const { id } = this.state;
-                  if (id) {
-                    this.editArticle(values, id);
-                  } else {
-                    this.createNewArticle(values);
-                  }
-                }}
-              >
-                {({ isSubmitting, errors, touched }) => (
-                  <Form className="inputs__container">
-                    <div className="input__mb">
-                      <Field
-                        type="text"
-                        name="title"
-                        className={
-                          errors.title && touched.title
-                            ? "input  input__fail"
-                            : "input"
-                          // ? (!errors.title && touched.title
-                          //   ? "input margin input__success"
-                          //   : "input margin")
-                          // : null
-                        }
-                        placeholder="Please enter title"
-                        value={title}
-                        onChange={this.handleChangeInput}
-                      />
-                      <ErrorMessage
-                        name="title"
-                        component="div"
-                        className="input__error"
-                      />
-                    </div>
-                    <div className="input__mb">
-                      <Field
-                        type="text"
-                        name="tag"
-                        className={
-                          errors.tag && touched.tag
-                            ? "input input__fail"
-                            : "input"
-                        }
-                        placeholder="Please enter tag"
-                        value={tag}
-                        onChange={this.handleChangeInput}
-                      />
-                      <ErrorMessage
-                        name="tag"
-                        component="div"
-                        className="input__error"
-                      />
-                    </div>
-                    <div className="input__mb">
-                      <Field
-                        type="text"
-                        name="author"
-                        className={
-                          errors.author && touched.author
-                            ? "input input__fail"
-                            : "input"
-                        }
-                        placeholder="Please enter author"
-                        value={author}
-                        onChange={this.handleChangeInput}
-                      />
-                      <ErrorMessage
-                        name="author"
-                        component="div"
-                        className="input__error"
-                      />
-                    </div>
-                    <div className="input__mb">
-                      <Field
-                        type="date"
-                        name="date"
-                        className={
-                          errors.date && touched.date
-                            ? "input input__fail"
-                            : "input"
-                        }
-                        placeholder="Please choose the date"
-                        value={date}
-                        onChange={this.handleChangeInput}
-                        // format="MMMM dd, yyyy"
-                        // pattern="\d{4}-\d{2}-\d{2}"
-                        // min={new Date()}
-
-                        // locale="ro"
-                      />
-
-                      <ErrorMessage
-                        name="date"
-                        component="div"
-                        className="input__error"
-                      />
-                    </div>
-                    <div className="input__mb">
-                      <input
-                        type="file"
-                        name="imgUrl"
-                        className={
-                          errors.imgUrl && touched.imgUrl
-                            ? "input input__fail"
-                            : "input"
-                        }
-                        placeholder="Please enter the image url"
-                        style={{ fontSize: 14, paddingTop: 5 }}
-                        onChange={(event) => this.handleSelectedFile(event)}
-                      />
-                      <ErrorMessage
-                        name="imgUrl"
-                        component="div"
-                        className="input__error"
-                      />
-                    </div>
-                    <div className="input__mb">
-                      <Field
-                        type="text"
-                        name="saying"
-                        className={
-                          errors.saying && touched.saying
-                            ? "input input__fail"
-                            : "input"
-                        }
-                        placeholder="Please enter saying"
-                        value={saying}
-                        onChange={this.handleChangeInput}
-                      />
-                      <ErrorMessage
-                        name="saying"
-                        component="div"
-                        className="input__error"
-                      />
-                    </div>
-
-                    <div>
-                      <Field
-                        type="text"
-                        name="content"
-                        as="textarea"
-                        className={
-                          errors.content && touched.content
-                            ? "textarea input__fail"
-                            : "textarea"
-                        }
-                        cols="28"
-                        rows="10"
-                        placeholder="Please enter content"
-                        value={content}
-                        onChange={this.handleChangeInput}
-                      />
-                      <ErrorMessage
-                        name="content"
-                        component="div"
-                        className="input__error"
-                      />
-                    </div>
-                    <div className="modal__buttons">
-                      <button
-                        type="button"
-                        className="button close-modal"
-                        onClick={this.closeModalResetForm}
-                      >
-                        Cancel
-                      </button>
-                      {id === null ? (
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="button button--pink"
-                          onClick={() => this.openToast("success")}
-                        >
-                          Save
-                        </button>
-                      ) : (
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="button button--pink"
-                          onClick={() => this.openToast("success")}
-                        >
-                          Edit
-                        </button>
-                      )}
-                    </div>
-                  </Form>
-                )}
-              </Formik>
-            </div>
-            <div id="error-modal"></div>
-          </div>
-        </div>
+        <AddArticleModal
+          isModalOpen={this.state.isModalOpen}
+          id={this.state.id}
+          title={this.state.title}
+          tag={this.state.tag}
+          author={this.state.author}
+          date={this.state.date}
+          imgUrl={this.state.imgUrl}
+          saying={this.state.saying}
+          content={this.state.content}
+          createNewArticle={this.createNewArticle}
+          editArticle={this.editArticle}
+          handleChangeInput={this.handleChangeInput}
+          handleSelectedFile={this.handleSelectedFile}
+          openToast={this.openToast}
+          closeModalResetForm={this.closeModalResetForm}
+        />
         <div
           id="modal-alert"
           className={
