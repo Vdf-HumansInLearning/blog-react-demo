@@ -206,7 +206,6 @@ export default function AddArticleModal({
                         ? "input input__fail" : "input"
                     }
                     placeholder="Please enter the image url"
-                    style={{ fontSize: 14, paddingTop: 5 }}
                     onChange={(event) => handleSelectedFile(event)}
                   />
                   <i className={

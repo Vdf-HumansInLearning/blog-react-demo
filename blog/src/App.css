@@ -11,8 +11,10 @@
     --moon: #9b9b9b;
     --sun: #fff;
     --disabled-color: #e6e6e6;
+    --input-button-color: #f3f3f3;
     --error-color: #c00033;
     --green-color: #65e29b;
+    --calendar-color: invert(0.7);
     --background-image: url("/public/img/Valley-light.jpg");
 }
 
@@ -25,8 +27,10 @@
     --moon: #1a1a1f;
     --sun: #9b9b9b;
     --disabled-color: #494e5c;
+    --input-button-color: #494e5c71;
     --error-color: #c00033;
     --green-color: #65e29b;
+    --calendar-color: invert(0.4);
     --background-image: url("/public/img/Valley-dark.jpg");
 }
 
@@ -303,6 +307,35 @@ input.input {
 .input__mb {
     margin-bottom: 25px;
     position: relative;
+}
+
+/* image input placeholder text styling */
+input[type=file] {
+    color: #757575;
+}
+
+/* date input text placeholder color styling */
+input[type=date] {
+    color: #757575;
+}
+/* image input button styling */
+input[type=file]::file-selector-button {
+    font-family: "Cardo-Regular";
+    font-size: 18px;
+    background-color: var(--input-button-color);
+    color: #757575;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color-font);
+    width: 105px;
+    height: 35px;
+    position: relative;
+    bottom: 1px;
+    right: 11px;
+    cursor: pointer;
+}
+/* date input calendar styling */
+input[type=date]::-webkit-calendar-picker-indicator {
+    filter: var(--calendar-color) ;
 }
 
 .input__error {
