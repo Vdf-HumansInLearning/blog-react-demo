@@ -336,6 +336,7 @@ input[type=file]::file-selector-button {
 /* date input calendar styling */
 input[type=date]::-webkit-calendar-picker-indicator {
     filter: var(--calendar-color) ;
+    cursor: pointer;
 }
 
 .input__error {
