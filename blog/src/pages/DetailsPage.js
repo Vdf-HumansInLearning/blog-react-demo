@@ -69,12 +69,14 @@ class DetailsPage extends Component {
 
   componentDidMount() {
     this.getArticle();
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.params !== this.props.params) {
       this.getArticle();
     }
+    window.scrollTo(0, 0);
   }
 
   render() {

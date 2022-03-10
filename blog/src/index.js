@@ -8,13 +8,11 @@ import DetailsPage from "./pages/DetailsPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ThemeSwitch from "./components/ThemeSwitch";
-import ScrollToTop from "./components/ScrollToTop";
 import "./icons/css/social.css";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ScrollToTop />
       <ThemeSwitch />
       <Navbar />
       <Routes>

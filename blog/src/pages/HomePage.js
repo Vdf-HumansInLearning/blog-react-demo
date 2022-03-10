@@ -53,6 +53,11 @@ export default class HomePage extends Component {
 
   componentDidMount() {
     this.getArticles();
+    window.scrollTo(0, 0);
+  }
+
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
   }
 
   handleNext() {
