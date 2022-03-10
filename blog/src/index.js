@@ -8,7 +8,6 @@ import DetailsPage from "./pages/DetailsPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ThemeSwitch from "./components/ThemeSwitch";
-import ScrollToTop from "./components/ScrollToTop";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoutes from "./pages/ProtectedRoutes";
 import "./icons/css/social.css";
