@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -8,11 +8,13 @@ import DetailsPage from "./pages/DetailsPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ThemeSwitch from "./components/ThemeSwitch";
-import "./icons/css/social.css"
+import ScrollToTop from "./components/ScrollToTop";
+import "./icons/css/social.css";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <ThemeSwitch />
       <Navbar />
       <Routes>
