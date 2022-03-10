@@ -108,7 +108,9 @@ app.put("/articles/:id", (req, res) => {
   articlesList[index] = {
     ...updatedArticle,
     id: articlesList[index].id,
-    imgUrl: "img/" + req.body.imgUrl,
+    imgUrl: req.body.imgUrl.includes("img/")
+      ? req.body.imgUrl
+      : "img/" + req.body.imgUrl,
   };
   writeJSONFile(articlesList);
   res.json(articlesList[index]);

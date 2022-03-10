@@ -41,7 +41,6 @@ export default function AddArticleModal({
               content,
             }}
             validate={(values) => {
-              console.log(values);
               const errors = {};
               const regexJpg = /\.(jpe?g|png|gif|bmp)$/i;
               const upperCaseLetter =
