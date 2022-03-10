@@ -170,8 +170,8 @@ span.info__mark {
 }
 
 .border {
-    border: none;
-    border-right: 1px solid var(--primary-color-font);
+    border: none !important;
+    border-right: 1px solid var(--primary-color-font) !important;
     padding-right: 6px;
 }
 

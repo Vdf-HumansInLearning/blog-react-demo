@@ -19,12 +19,13 @@ function LoginPage() {
 
   const handleLogin = (event, email, password) => {
     event.preventDefault();
-    let url = "http://localhost:3007/admin";
+
     let admin = {
       email: email,
       password: password,
     };
-    fetch(url, {
+
+    fetch("http://localhost:3007/admin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,12 +41,12 @@ function LoginPage() {
       .then((response) => {
         let email = response.body.email;
         if (response.status === 200) {
-          //save cookie
           createCookie("email", `${email}`, 2);
-          //show toast
-          //showToast("Login succesful", "You have been logged in!", "succes");
-
+          //show toast of success
+          console.log("you have successfully logged in");
           navigate("/");
+        } else {
+          console.log("there are some problems with your credentials");
         }
       })
 
@@ -53,11 +54,7 @@ function LoginPage() {
         console.log(error);
       });
   };
-  return (
-    // <div className="d-flex">
-    <Login handleLogin={handleLogin} />
-    // </div>
-  );
+  return <Login handleLogin={handleLogin} />;
 }
 
 export default LoginPage;

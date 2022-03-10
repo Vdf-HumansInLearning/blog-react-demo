@@ -109,8 +109,7 @@ app.put("/articles/:id", (req, res) => {
         ...updatedArticle,
         id: articlesList[index].id,
         imgUrl: req.body.imgUrl.includes("img/") ?
-            req.body.imgUrl :
-            "img/" + req.body.imgUrl,
+            req.body.imgUrl : "img/" + req.body.imgUrl,
     };
     writeJSONFile(articlesList);
     res.json(articlesList[index]);
@@ -154,7 +153,7 @@ app.post("/admin", function(req, res) {
         (admin) => admin.email == req.body.email && admin.password == req.body.password
     );
     if (!admin) {
-        res.status(404).send({ message: "Invalid username or password." });
+        res.status(404).send({ message: "Invalid email or password." });
     } else {
         res.status(200).send(admin);
     }
