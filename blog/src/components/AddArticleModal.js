@@ -91,7 +91,7 @@ export default function AddArticleModal({
               }
             }}
           >
-            {({ isSubmitting, errors, touched }) => (
+            {({ isSubmitting, errors, touched, setFieldValue }) => (
               <Form className="inputs__container">
                 <div className="input__mb">
                   <Field
@@ -103,8 +103,6 @@ export default function AddArticleModal({
                         : "input"
                     }
                     placeholder="Please enter the title"
-                    value={title}
-                    onChange={handleChangeInput}
                   />
                   <i className={
                     errors.title && touched.title
@@ -128,8 +126,6 @@ export default function AddArticleModal({
                         ? "input input__fail" : "input"
                     }
                     placeholder="Please enter tag"
-                    value={tag}
-                    onChange={handleChangeInput}
                   />
                   <i className={
                     errors.tag && touched.tag
@@ -152,8 +148,6 @@ export default function AddArticleModal({
                         ? "input input__fail" : "input"
                     }
                     placeholder="Please enter the author"
-                    value={author}
-                    onChange={handleChangeInput}
                   />
                   <i className={
                     errors.author && touched.author
@@ -176,8 +170,6 @@ export default function AddArticleModal({
                         ? "input input__fail" : "input"
                     }
                     placeholder="Please choose the date"
-                    value={date}
-                    onChange={handleChangeInput}
                   // format="MMMM dd, yyyy"
                   // pattern="\d{4}-\d{2}-\d{2}"
                   // min={new Date()}
@@ -205,7 +197,9 @@ export default function AddArticleModal({
                         ? "input input__fail" : "input"
                     }
                     placeholder="Please enter the image url"
-                    onChange={(event) => handleSelectedFile(event)}
+                    onChange={(event) => {
+                      setFieldValue("file", event.currentTarget.files[0])
+                    }}
                   />
                   <i className={
                     errors.imgUrl && touched.imgUrl
@@ -229,7 +223,6 @@ export default function AddArticleModal({
                     }
                     placeholder="Please enter the saying"
                     value={saying}
-                    onChange={handleChangeInput}
                   />
                   <i className={
                     errors.saying && touched.saying
@@ -258,7 +251,6 @@ export default function AddArticleModal({
                     rows="10"
                     placeholder="Please enter content"
                     value={content}
-                    onChange={handleChangeInput}
                   />
                   <i className={
                     errors.content && touched.content

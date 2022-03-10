@@ -339,7 +339,7 @@ export default class HomePage extends Component {
           isPrevious={isPrevious}
         />
 
-        <AddArticleModal
+        {this.state.isModalOpen &&  <AddArticleModal
           isModalOpen={this.state.isModalOpen}
           id={this.state.id}
           title={this.state.title}
@@ -355,7 +355,7 @@ export default class HomePage extends Component {
           handleSelectedFile={this.handleSelectedFile}
           openToast={this.openToast}
           closeModalResetForm={this.closeModalResetForm}
-        />
+        />}
         <div
           id="modal-alert"
           className={
