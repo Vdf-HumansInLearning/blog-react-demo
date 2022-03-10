@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
@@ -26,9 +25,9 @@ export default function Navbar() {
             </a>
           </li>
         ))}
-        <button className="nav__link logout" onClick={handleLogout}>
-          logout
-        </button>
+        <li className="nav__item">
+          <a href="/" className="nav__link" onClick={handleLogout}>logout</a>
+        </li>
       </ul>
     </div>
   );

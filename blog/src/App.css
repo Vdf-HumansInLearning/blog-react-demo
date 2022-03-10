@@ -12,6 +12,7 @@
     --sun: #fff;
     --disabled-color: #e6e6e6;
     --input-button-color: #f3f3f3;
+    --date-placeholder-color: #757575;
     --error-color: #c00033;
     --green-color: #65e29b;
     --calendar-color: invert(0.7);
@@ -28,6 +29,7 @@
     --sun: #9b9b9b;
     --disabled-color: #494e5c;
     --input-button-color: #494e5c71;
+    --date-placeholder-color: #757575;
     --error-color: #c00033;
     --green-color: #65e29b;
     --calendar-color: invert(0.4);
@@ -82,13 +84,6 @@ li.nav__item {
     font-size: 11px;
     font-family: "Montserrat", sans-serif;
     letter-spacing: 5px;
-}
-
-.nav__link.logout {
-    background: white;
-    border: none;
-    padding-top: 4px;
-    margin-left: 100px;
 }
 
 .add__container {
@@ -318,16 +313,14 @@ input.input {
 
 
 /* image input placeholder text styling */
-
-input[type="file"] {
-    color: #757575;
+input[type=file] {
+    color: var(--date-placeholder-color);
 }
 
 
 /* date input text placeholder color styling */
-
-input[type="date"] {
-    color: #757575;
+input[type=date] {
+    color: var(--date-placeholder-color);
 }
 
 
