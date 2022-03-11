@@ -115,16 +115,16 @@ export default class HomePage extends Component {
   }
 
   createNewArticle(article) {
-    const dateParsed = new Date(this.state.date);
-    const today = new Date();
+    // const dateParsed = new Date(this.state.date);
+    // const today = new Date();
 
-    let dd = String(dateParsed.getDate()).padStart(2, "0");
-    let mm = dateParsed.toLocaleString("default", {
-      month: "long",
-    });
-    let yyyy = dateParsed.getFullYear();
+    // let dd = String(dateParsed.getDate()).padStart(2, "0");
+    // let mm = dateParsed.toLocaleString("default", {
+    //   month: "long",
+    // });
+    // let yyyy = dateParsed.getFullYear();
 
-    let date = mm + " " + dd + ", " + yyyy;
+    // let date = mm + " " + dd + ", " + yyyy;
 
     fetch("http://localhost:3007/articles", {
       method: "POST",
@@ -133,33 +133,34 @@ export default class HomePage extends Component {
       },
       body: JSON.stringify({
         ...article,
-        imgUrl: article.imgUrl,
+        imgUrl: article.imgUrl.name,
         imgAlt: "photo",
-        date: date,
+
+        // date: date,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         this.closeModalResetForm();
-        if (dateParsed.getTime() <= today.getTime()) {
+        // if (dateParsed.getTime() <= today.getTime()) {
           this.getArticles();
           this.showToast("The article has been created!");
-        } else {
-          console.log("not possible");
-        }
+        // } else {
+        //   console.log("not possible");
+        // }
       })
       .catch((err) => console.log(err));
   }
 
   editArticle(article, id) {
-    const dateParsed = new Date(this.state.date);
-    let dd = String(dateParsed.getDate()).padStart(2, "0");
-    let mm = dateParsed.toLocaleString("default", {
-      month: "long",
-    });
-    let yyyy = dateParsed.getFullYear();
+    // const dateParsed = new Date(this.state.date);
+    // let dd = String(dateParsed.getDate()).padStart(2, "0");
+    // let mm = dateParsed.toLocaleString("default", {
+    //   month: "long",
+    // });
+    // let yyyy = dateParsed.getFullYear();
 
-    let date = mm + " " + dd + ", " + yyyy;
+    // let date = mm + " " + dd + ", " + yyyy;
 
     fetch("http://localhost:3007/articles/" + id, {
       method: "PUT",
@@ -168,9 +169,9 @@ export default class HomePage extends Component {
       },
       body: JSON.stringify({
         ...article,
-        imgUrl: article.imgUrl,
+        imgUrl: article.imgUrl.name,
         imgAlt: "photo",
-        date: date,
+        // date: date,
       }),
     })
       .then((res) => res.json())
