@@ -1,5 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import FileInput from "./FileInput";
 
 export default function AddArticleModal({
   isModalOpen,
@@ -13,11 +15,38 @@ export default function AddArticleModal({
   content,
   createNewArticle,
   editArticle,
-  handleChangeInput,
-  handleSelectedFile,
   closeModalResetForm,
   openToast,
 }) {
+  const supportedFormats = [
+    "image/jpg",
+    "image/jpeg",
+    "image/gif",
+    "image/png",
+    "image/bmp"
+  ];
+  const upperCaseLetter =
+    /([A-Z]{1})([a-z]+)(\s)([A-Z]{1})([a-z]+){1}(|\s)$/g;
+  const yupValidation = Yup.object({
+    title: Yup.string()
+      .min(5, "The title must be at least 5 characters long")
+      .required("Please enter the title if your article"),
+    tag: Yup.string()
+      .max(30, "Please keep your tag under 30 characters!")
+      .required("Please enter the tag of your article!"),
+    author: Yup.string()
+      .required("Please enter the author of your article!")
+      .matches(upperCaseLetter, "Please use capital letters for the author's first and last name!"),
+    date: Yup.string()
+      .required("Please choose a date"),
+    imgUrl: Yup.mixed()
+      .required("Please choose an image")
+      .test("fileFormat", "Please insert an image with jpg/jpeg/png/bmp/gif extension!", value => value && supportedFormats.includes(value.type)),
+    saying: Yup.string()
+      .required("Please enter the main saying of your article"),
+    content: Yup.string()
+      .required("Please enter the content of your article")
+  })
   return (
     <div
       id="modal-box"
@@ -40,48 +69,8 @@ export default function AddArticleModal({
               saying,
               content,
             }}
-            validate={(values) => {
-              const errors = {};
-              const regexJpg = /\.(jpe?g|png|gif|bmp)$/i;
-              const upperCaseLetter =
-                /([A-Z]{1})([a-z]+)(\s)([A-Z]{1})([a-z]+){1}(|\s)$/g;
-              if (!values.title) {
-                errors.title = "Please insert the title of your article!";
-              } else if (values.title.length < 5) {
-                errors.title = "The title must be at least 5 characters long!";
-              }
-              if (!values.tag) {
-                errors.tag = "Please insert the tag of your article!";
-              }
-              if (values.tag.length > 30) {
-                console.log(values.tag);
-                errors.tag = "Please keep your tag under 30 characters!";
-              }
-              if (!values.author) {
-                errors.author = "Please insert the author of your article!";
-              } else if (!upperCaseLetter.test(values.author)) {
-                errors.author =
-                  "Please use capital letters for the author's first and last name!";
-              }
-              if (!values.date) {
-                errors.date = "Please choose a date!";
-              }
-              if (!values.imgUrl) {
-                errors.imgUrl = "Please insert an image url!";
-              } else if (!regexJpg.test(values.imgUrl)) {
-                errors.imgUrl =
-                  "Please insert an image with jpg/jpeg/png/bmp/gif extension!";
-              }
-              if (!values.saying) {
-                errors.saying =
-                  "Please insert the main saying of your article!";
-              }
-              if (!values.content) {
-                errors.content = "Please insert the content of your article!";
-              }
 
-              return errors;
-            }}
+            validationSchema={yupValidation}
             onSubmit={(values) => {
               //   const { id } = this.state;
               if (id) {
@@ -91,7 +80,7 @@ export default function AddArticleModal({
               }
             }}
           >
-            {({ isSubmitting, errors, touched, setFieldValue }) => (
+            {({ isSubmitting, errors, touched, handleChange, values }) => (
               <Form className="inputs__container">
                 <div className="input__mb">
                   <Field
@@ -189,24 +178,32 @@ export default function AddArticleModal({
                   />
                 </div>
                 <div className="input__mb">
-                  <input
-                    type="file"
-                    name="imgUrl"
-                    className={
+                  <div className="input__upload">
+                    <Field
+                      type="file"
+                      name="imgUrl"
+                      component={FileInput}
+                      onChange={handleChange}
+                      className="input input__file"
+                    />
+                    <input
+                      disabled
+                      placeholder={
+                        values.imgUrl ? values.imgUrl.name : "Upload your photo"
+                      }
+                      className={
+                        errors.imgUrl && touched.imgUrl
+                          ? " input__data input__fail" : " input__data"
+                      }
+                    />
+                    <button type="submit" className="input__button">Choose File</button>
+                    <i className={
                       errors.imgUrl && touched.imgUrl
-                        ? "input input__fail" : "input"
+                        ? "icon-cancel-circled  " : ""
                     }
-                    placeholder="Please enter the image url"
-                    onChange={(event) => {
-                      setFieldValue("file", event.currentTarget.files[0])
-                    }}
-                  />
-                  <i className={
-                    errors.imgUrl && touched.imgUrl
-                      ? "icon-cancel-circled  " : ""
-                  }
-                  >
-                  </i>
+                    >
+                    </i>
+                  </div>
                   <ErrorMessage
                     name="imgUrl"
                     component="div"
@@ -222,7 +219,6 @@ export default function AddArticleModal({
                         ? "input input__fail" : "input"
                     }
                     placeholder="Please enter the saying"
-                    value={saying}
                   />
                   <i className={
                     errors.saying && touched.saying
@@ -250,7 +246,6 @@ export default function AddArticleModal({
                     cols="28"
                     rows="10"
                     placeholder="Please enter content"
-                    value={content}
                   />
                   <i className={
                     errors.content && touched.content
