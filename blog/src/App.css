@@ -313,13 +313,15 @@ input.input {
 
 
 /* image input placeholder text styling */
-input[type=file] {
+
+input[type="file"] {
     color: var(--date-placeholder-color);
 }
 
 
 /* date input text placeholder color styling */
-input[type=date] {
+
+input[type="date"] {
     color: var(--date-placeholder-color);
 }
 
@@ -731,6 +733,23 @@ hr {
     font-family: "Open Sans";
     border-radius: 50px;
     margin-top: 15px;
+}
+
+.to__homepage__button {
+    border: none;
+    background: var(--bg-color);
+    color: var(--font-color);
+}
+
+.centered {
+    text-align: center;
+    padding-top: 20px;
+}
+
+p.error__message {
+    color: var(--error-color);
+    font-size: 18px;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 300px) {

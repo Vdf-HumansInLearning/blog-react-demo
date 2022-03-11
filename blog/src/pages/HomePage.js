@@ -31,6 +31,7 @@ export default class HomePage extends Component {
       showSuccessMessage: false,
       showDeleteMessage: false,
       toastContent: "",
+      cookie: document.cookie,
     };
     this.getArticles = this.getArticles.bind(this);
     this.handleNext = this.handleNext.bind(this);
@@ -293,6 +294,7 @@ export default class HomePage extends Component {
       showDeleteMessage,
       isToastShown,
       toastContent,
+      cookie,
     } = this.state;
 
     const filteredArticles = articles.map((article) => (
@@ -302,6 +304,7 @@ export default class HomePage extends Component {
         editArticle={this.openEditModal}
         deleteArticle={this.openDeleteModal}
         isDetails={false}
+        cookie={cookie}
       />
     ));
     const isPrevious = indexStart === 0 ? false : true;
@@ -320,17 +323,19 @@ export default class HomePage extends Component {
           isToastShown={isToastShown}
           toastContent={toastContent}
         />
-        <div>
-          <div className="add__container">
-            <button
-              type="button"
-              className="button open-modal fas fa-plus"
-              onClick={() => this.openAddModal()}
-            >
-              Add Article
-            </button>
+        {cookie ? (
+          <div>
+            <div className="add__container">
+              <button
+                type="button"
+                className="button open-modal fas fa-plus"
+                onClick={() => this.openAddModal()}
+              >
+                Add Article
+              </button>
+            </div>
           </div>
-        </div>
+        ) : null}
         {filteredArticles}
         <Footer
           handleNext={this.handleNext}
@@ -339,23 +344,25 @@ export default class HomePage extends Component {
           isPrevious={isPrevious}
         />
 
-        {this.state.isModalOpen &&  <AddArticleModal
-          isModalOpen={this.state.isModalOpen}
-          id={this.state.id}
-          title={this.state.title}
-          tag={this.state.tag}
-          author={this.state.author}
-          date={this.state.date}
-          imgUrl={this.state.imgUrl}
-          saying={this.state.saying}
-          content={this.state.content}
-          createNewArticle={this.createNewArticle}
-          editArticle={this.editArticle}
-          handleChangeInput={this.handleChangeInput}
-          handleSelectedFile={this.handleSelectedFile}
-          openToast={this.openToast}
-          closeModalResetForm={this.closeModalResetForm}
-        />}
+        {this.state.isModalOpen && (
+          <AddArticleModal
+            isModalOpen={this.state.isModalOpen}
+            id={this.state.id}
+            title={this.state.title}
+            tag={this.state.tag}
+            author={this.state.author}
+            date={this.state.date}
+            imgUrl={this.state.imgUrl}
+            saying={this.state.saying}
+            content={this.state.content}
+            createNewArticle={this.createNewArticle}
+            editArticle={this.editArticle}
+            handleChangeInput={this.handleChangeInput}
+            handleSelectedFile={this.handleSelectedFile}
+            openToast={this.openToast}
+            closeModalResetForm={this.closeModalResetForm}
+          />
+        )}
         <div
           id="modal-alert"
           className={

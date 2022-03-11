@@ -22,6 +22,9 @@ class Login extends Component {
     return (
       <div className="main__container">
         <h1 className="main__title">Log in to your account</h1>
+        {this.props.credentialsError ? (
+          <p className="error__message">Incorrect email or password!</p>
+        ) : null}
         <form>
           <div className="mb-3 d-flex align-content-center justify-content-evenly">
             <i className="icon-user"></i>

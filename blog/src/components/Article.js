@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function Article({ article, editArticle, deleteArticle, isDetails }) {
+function Article({ article, editArticle, deleteArticle, isDetails, cookie }) {
   const text = article.content;
 
   const spliced = text.substring(0, text.length / 2);
@@ -30,7 +30,7 @@ function Article({ article, editArticle, deleteArticle, isDetails }) {
         </li>
         <li className="info__item">{article.date}</li>
       </ul>
-      {!isDetails && (
+      {!isDetails && cookie && (
         <div className="actions__container">
           <button
             type="button"

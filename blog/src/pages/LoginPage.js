@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "../components/Login";
+import { useState } from "react";
 
 function LoginPage() {
   const navigate = useNavigate();
+  const [credentialsError, setCredentialsError] = useState(false);
 
   function createCookie(name, value, days) {
     var date, expires;
@@ -46,7 +48,7 @@ function LoginPage() {
           console.log("you have successfully logged in");
           navigate("/");
         } else {
-          console.log("there are some problems with your credentials");
+          setCredentialsError(true);
         }
       })
 
@@ -54,7 +56,9 @@ function LoginPage() {
         console.log(error);
       });
   };
-  return <Login handleLogin={handleLogin} />;
+  return (
+    <Login handleLogin={handleLogin} credentialsError={credentialsError} />
+  );
 }
 
 export default LoginPage;
