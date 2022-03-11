@@ -186,16 +186,32 @@ export default function AddArticleModal({
                       onChange={handleChange}
                       className="input input__file"
                     />
-                    <input
-                      disabled
-                      placeholder={
-                        values.imgUrl ? values.imgUrl.name : "Upload your photo"
-                      }
-                      className={
-                        errors.imgUrl && touched.imgUrl
-                          ? " input__data input__fail" : " input__data"
-                      }
-                    />
+                    {id === null ? (
+                      <input
+                        disabled
+                        placeholder={
+                          values.imgUrl ? values.imgUrl.name : "No File Chosen"
+                        }
+                        className={
+                          errors.imgUrl && touched.imgUrl
+                            ? " input__data input__fail" : " input__data"
+                        }
+                      />
+                    ) : (
+                      <input
+                        disabled
+                        placeholder={
+                          String(values.imgUrl).includes("img/")
+                            ? String(values.imgUrl).replace("img/", "")
+                            : values.imgUrl.name
+                        }
+                        className={
+                          errors.imgUrl && touched.imgUrl
+                            ? " input__data input__fail" : " input__data"
+                        }
+                      />
+
+                    )}
                     <button type="submit" className="input__button">Choose File</button>
                     <i className={
                       errors.imgUrl && touched.imgUrl
