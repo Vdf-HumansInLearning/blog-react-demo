@@ -78,10 +78,6 @@ export default class HomePage extends Component {
       {
         indexStart: indexStart - indexSize,
         indexEnd: indexEnd - indexSize,
-        //prima pagina este 0 si 3
-        //a2a pagina este 4 si 4
-        //nr de articole total 5
-        //4 articole pe pagina
       },
       this.getArticles
     );
@@ -143,8 +139,8 @@ export default class HomePage extends Component {
       .then((data) => {
         this.closeModalResetForm();
         // if (dateParsed.getTime() <= today.getTime()) {
-          this.getArticles();
-          this.showToast("The article has been created!");
+        this.getArticles();
+        this.showToast("The article has been created!");
         // } else {
         //   console.log("not possible");
         // }
@@ -153,15 +149,6 @@ export default class HomePage extends Component {
   }
 
   editArticle(article, id) {
-    // const dateParsed = new Date(this.state.date);
-    // let dd = String(dateParsed.getDate()).padStart(2, "0");
-    // let mm = dateParsed.toLocaleString("default", {
-    //   month: "long",
-    // });
-    // let yyyy = dateParsed.getFullYear();
-
-    // let date = mm + " " + dd + ", " + yyyy;
-
     fetch("http://localhost:3007/articles/" + id, {
       method: "PUT",
       headers: {
@@ -171,7 +158,6 @@ export default class HomePage extends Component {
         ...article,
         imgUrl: article.imgUrl.name,
         imgAlt: "photo",
-        // date: date,
       }),
     })
       .then((res) => res.json())
@@ -308,9 +294,9 @@ export default class HomePage extends Component {
         cookie={cookie}
       />
     ));
+
     const isPrevious = indexStart === 0 ? false : true;
     const isNext = totalNumberOfArticles - 1 > indexEnd ? true : false;
-    // 4 articole/pag si 5 articole in total => indexStart = 0 & indexEnd = 3
 
     if (isShowLoad) {
       return <Loader />;

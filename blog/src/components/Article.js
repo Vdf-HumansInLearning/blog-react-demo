@@ -49,7 +49,7 @@ function Article({ article, editArticle, deleteArticle, isDetails, cookie }) {
           </button>
         </div>
       )}
-      <img src={"../" + article.imgUrl} alt={article.imgAlt}></img>
+      <img src={"../" + article.imgUrl.name} alt={article.imgAlt}></img>
 
       <div className="content__container">
         {isDetails ? (
@@ -80,7 +80,7 @@ Article.propTypes = {
   article: PropTypes.exact({
     id: PropTypes.string,
     title: PropTypes.string,
-    imgUrl: PropTypes.string,
+    imgUrl: PropTypes.object,
     imgAlt: PropTypes.string,
     content: PropTypes.string,
     tag: PropTypes.string,

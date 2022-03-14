@@ -44,8 +44,6 @@ function LoginPage() {
         let email = response.body.email;
         if (response.status === 200) {
           createCookie("email", `${email}`, 2);
-          //show toast of success
-          console.log("you have successfully logged in");
           navigate("/");
         } else {
           setCredentialsError(true);
