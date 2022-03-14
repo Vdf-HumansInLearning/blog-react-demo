@@ -100,7 +100,7 @@ app.post("/articles", (req, res) => {
         saying: saying,
         content: content,
     });
-
+    console.log(req.body)
     writeJSONFile(articlesList);
     res.json(articlesList);
 });
@@ -121,7 +121,7 @@ app.put("/articles/:id", (req, res) => {
         id: articlesList[index].id,
         imgUrl: String(req.body.imgUrl.name).includes('img/') ? req.body.imgUrl : {
             "name": "img/" + req.body.imgUrl,
-            "lastModified": 1642167318582,
+            "lastModified": 1111167318582,
             "lastModifiedDate": "Fri Jan 14 2022 15:35:18 GMT+0200 (Eastern European Standard Time)",
             "webkitRelativePath": "",
             "size": 60369,
@@ -133,7 +133,9 @@ app.put("/articles/:id", (req, res) => {
         }
 
     };
-
+    console.log(req.body)
+    console.log(req.body.imgUrl)
+    console.log(req.body.imgUrl.name)
     writeJSONFile(articlesList);
     res.json(articlesList[index]);
 });
