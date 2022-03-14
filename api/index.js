@@ -119,9 +119,9 @@ app.put("/articles/:id", (req, res) => {
     articlesList[index] = {
         ...updatedArticle,
         id: articlesList[index].id,
-        imgUrl: String(req.body.imgUrl.name).includes('img/') ? req.body.imgUrl : {
-            "name": "img/" + req.body.imgUrl,
-            "lastModified": 1111167318582,
+        imgUrl:  {
+            "name": String(req.body.imgUrl).includes("img/") ? req.body.imgUrl : "img/" + req.body.imgUrl,
+            "lastModified": 2,
             "lastModifiedDate": "Fri Jan 14 2022 15:35:18 GMT+0200 (Eastern European Standard Time)",
             "webkitRelativePath": "",
             "size": 60369,

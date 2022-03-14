@@ -201,8 +201,8 @@ export default function AddArticleModal({
                       <input
                         disabled
                         placeholder={
-                          String(values.imgUrl).includes("img/")
-                            ? String(values.imgUrl).replace("img/", "")
+                          String(values.imgUrl.name).includes("img/")
+                            ? String(values.imgUrl.name).replace("img/", "")
                             : values.imgUrl.name
                         }
                         className={
