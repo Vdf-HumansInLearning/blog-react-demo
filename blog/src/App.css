@@ -41,8 +41,7 @@ body {
     position: relative;
 }
 
-#root,
-#add-article-button {
+#root {
     width: 1280px;
     margin: 0px auto;
     overflow: hidden;
@@ -611,7 +610,7 @@ p.saying {
 }
 
 
-/* The modalAlert (background) */
+/* The delete modal (background) */
 
 .cancel-alert-button,
 .delete-alert-button {
@@ -695,81 +694,6 @@ hr {
     justify-content: center;
 }
 
-.alert-title {
-    font-family: "Montserrat", sans-serif;
-    color: var(--font-color);
-    font-weight: bold;
-    font-size: 30px;
-}
-
-.main__btn {
-    width: 100%;
-    background-color: var(--color-blue);
-    height: 40px;
-    color: var(--color-white);
-    font-family: "Open Sans";
-    border: none;
-    border-radius: 5px;
-    margin-top: 15px;
-}
-
-
-/* .solid {
-    margin: 1rem 0;
-} */
-
-.main__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.main__title {
-    font-weight: 700;
-    color: var(--font-color);
-    font-family: "Open Sans";
-    margin-bottom: 40px;
-    font-size: 35px;
-}
-
-.icon-user,
-.icon-lock-open-alt {
-    color: var(--primary-color-font);
-    font-size: 23px;
-    display: flex;
-    align-items: center;
-}
-
-.form-control {
-    display: block;
-    width: 100%;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: var(--bg-color);
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.main__btn {
-    width: 100%;
-    border: 1px solid var(--primary-color-font);
-    background-color: var(--bg-color);
-    height: 40px;
-    color: var(--font-color);
-    font-family: "Open Sans";
-    border-radius: 50px;
-    margin-top: 15px;
-}
-
 .to__homepage__button {
     border: none;
     background: var(--bg-color);
@@ -781,7 +705,81 @@ hr {
     padding-top: 20px;
 }
 
-p.error__message {
+/* login page styling */
+
+.login {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 264px);
+    flex-direction: column;
+    background-position: center;
+    position: absolute;
+    left: 0;
+    background-image: var(--background-image);
+}
+
+.login__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid var(--primary-color-font);
+    width: 300px;
+    height: 400px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 26px 6px;
+    background-image: var(--background-image);
+}
+
+.login__button {
+    width: 100%;
+    border: 1px solid var(--primary-color-font);
+    background-color: var(--bg-color);
+    height: 40px;
+    color: var(--font-color);
+    font-family: "Open Sans";
+    border-radius: 50px;
+    margin-top: 15px;
+}
+
+.login__title {
+    font-weight: 700;
+    color: var(--font-color);
+    font-family: "Open Sans";
+    margin-bottom: 40px;
+    font-size: 35px;
+    text-align: center;
+}
+
+.icon-user,
+.icon-lock-open-alt {
+    color: var(--primary-color-font);
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+}
+
+.login__input {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--secondary-color-font);
+    background-color: var(--bg-color);
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.login__error {
     color: var(--error-color);
     font-size: 18px;
     font-weight: bold;
@@ -980,11 +978,6 @@ input#date {
 
     .modal__buttons {
         margin-top: 150px;
-    }
-
-    /* delete modal */
-    h1.alert-title {
-        font-size: 60px;
     }
 
     .alert-delete-p {
