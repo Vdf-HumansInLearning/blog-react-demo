@@ -10,6 +10,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import ThemeSwitch from "./components/ThemeSwitch";
 import LoginPage from "./pages/LoginPage";
 import "./icons/css/social.css";
+import ProtectedLogin from "./pages/ProtectedLogin";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,7 +24,9 @@ ReactDOM.render(
         <Route path="article" element={<DetailsPage />}>
           <Route path=":id" element={<DetailsPage test="abcd" />} />
         </Route>
-        <Route path="/login" element={<LoginPage />} />
+        <Route element={<ProtectedLogin />}>
+          <Route path="/login" element={<LoginPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
