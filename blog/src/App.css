@@ -258,7 +258,15 @@ p {
     padding: 20px;
 }
 
-.modal-title {
+.modal__content {
+    font-family: "Montserrat", sans-serif;
+    font-size: 22px;
+    padding-top: 33px;
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.title--modal {
     font-family: "Montserrat-Regular";
     margin-top: 50px;
     margin-bottom: 50px;
@@ -582,40 +590,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 }
 
-
-
-
-/* The delete modal (background) */
-
-.modal__content {
-    font-family: "Montserrat", sans-serif;
-    font-size: 22px;
-    padding-top: 33px;
-    text-align: center;
-    margin-bottom: 70px;
-}
-
-hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
-}
-
-.clearfix {
-    display: flex;
-    justify-content: center;
-}
-
-.to__homepage__button {
-    border: none;
-    background: var(--bg-color);
-    color: var(--font-color);
-}
-
-.centered {
-    text-align: center;
-    padding-top: 20px;
-}
-
 /* login page styling */
 
 .login {
@@ -696,26 +670,7 @@ hr {
     font-weight: bold;
 }
 
-@media screen and (max-width: 300px) {
-
-    .cancel-alert-button,
-    .delete-alert-button {
-        width: 100%;
-    }
-}
-
-div#error-modal {
-    display: flex;
-    justify-content: center;
-    color: red;
-    font-size: 21px;
-    font-family: "Montserrat";
-}
-
-input#date {
-    background: var(--disabled-color);
-}
-
+/* add article plus icon  from fontawesome  */
 .fas {
     font-weight: 500;
 }
@@ -752,12 +707,12 @@ input#date {
 
 
     .nav__link,
-    button.button {
+    .button {
         font-size: 18px;
     }
 
-    span.info__mark,
-    li.info__item,
+    .info__mark,
+    .info__item,
     .actions__btn {
         font-size: 20px;
     }
@@ -767,12 +722,12 @@ input#date {
         line-height: 42px;
     }
 
-    p.saying {
+    .saying {
         font-size: 35px;
         line-height: 50px;
     }
 
-    button.footer__link {
+    .footer__link {
         font-size: 50px;
     }
 
@@ -797,28 +752,24 @@ input#date {
         line-height: 0px;
     }
 
-    textarea.textarea {
+    .textarea {
         font-size: 24px;
     }
 
     /* delete modal */
     .modal__container--small {
-        width: 865px;
-    }
-
-    .delete-alert-button {
-        font-size: 18px;
+        width: 875px;
     }
 
     /* page404 */
-    .error-info {
+    .error__info {
         font-size: 30px;
         margin-top: 100px;
     }
 
-    .error-box {
+    .error__box {
         position: relative;
-        height: 129vh;
+        height: 1045px;
         background-position: center;
     }
 
@@ -857,6 +808,7 @@ input#date {
     .login__button {
         height: 75px;
         font-size: 36px;
+        margin-top: 40px;
     }
 }
 
@@ -870,8 +822,6 @@ input#date {
     .theme-switch {
         margin-right: 115px;
     }
-
-
 
     .icons {
         width: 170px;
@@ -891,7 +841,7 @@ input#date {
         margin-bottom: 130px;
     }
 
-    button.button {
+    .button {
         width: 350px;
         height: 90px;
         font-size: 26px;
@@ -914,12 +864,12 @@ input#date {
         margin-bottom: 60px;
     }
 
-    ul.info__container {
+    .info__container {
         margin-bottom: 80px;
     }
 
-    span.info__mark,
-    li.info__item {
+    .info__mark,
+    .info__item {
         font-size: 28px;
     }
 
@@ -936,12 +886,12 @@ input#date {
         line-height: 60px;
     }
 
-    p.saying {
+    .saying {
         font-size: 42px;
         line-height: 50px;
     }
 
-    button.footer__link {
+    .footer__link {
         font-size: 60px;
     }
 
@@ -951,7 +901,12 @@ input#date {
     }
 
     .modal__container--small {
-        height: 400px;
+        height: 480px;
+        padding: 48px;
+    }
+
+    .modal__content {
+        font-size: 33px;
     }
 
     .inputs__container {
@@ -993,10 +948,11 @@ input#date {
         width: 200px;
         height: 70px;
         font-size: 36px;
+        bottom: 0px;
     }
 
 
-    textarea.textarea {
+    .textarea {
         font-size: 36px;
         height: 400px;
         line-height: 55px;
@@ -1006,36 +962,25 @@ input#date {
         margin-top: 75px;
     }
 
-    button.button.button--pink {
+    .button--pink {
         margin-left: 153px;
     }
 
-    .alert-delete-p {
-        font-size: 32px;
-    }
-
-    .delete-alert-button {
-        width: 350px;
-        height: 70px;
-        font-size: 26px;
-    }
-
     /* page404 */
-    .error-info {
-        font-size: 50px;
-        margin-top: 300px;
-    }
-
-    h1.error-message {
-        font-size: 50px;
-    }
-
-    .error-box {
+    .error__box {
         position: relative;
         height: 262vh;
         background-position: left;
     }
 
+    .error__info {
+        font-size: 50px;
+        margin-top: 300px;
+    }
+
+    .error__message {
+        font-size: 50px;
+    }
     /* login page styling */
 
     .login {
@@ -1071,6 +1016,7 @@ input#date {
     .login__button {
         height: 90px;
         font-size: 40px;
+        margin-top: 60px;
     }
 
 
