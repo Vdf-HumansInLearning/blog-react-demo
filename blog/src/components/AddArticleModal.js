@@ -54,7 +54,7 @@ export default function AddArticleModal({
       }
     >
       <div className="modal__container">
-        <h2 className="title modal-title">Add/Edit article</h2>
+        <h2 className="title title--modal">Add/Edit article</h2>
         <Formik
           enableReinitialize
           initialValues={{
@@ -297,7 +297,6 @@ export default function AddArticleModal({
             </Form>
           )}
         </Formik>
-        <div id="error-modal"></div>
       </div>
     </div>
   );
