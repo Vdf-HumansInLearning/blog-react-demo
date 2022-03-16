@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import { format } from 'date-fns'
 
 function Article({ article, editArticle, deleteArticle, isDetails, cookie }) {
   const text = article.content;
