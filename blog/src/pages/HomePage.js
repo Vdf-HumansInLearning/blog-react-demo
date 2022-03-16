@@ -311,16 +311,14 @@ export default class HomePage extends Component {
           toastContent={toastContent}
         />
         {cookie ? (
-          <div>
-            <div className="add__container">
-              <button
-                type="button"
-                className="button open-modal fas fa-plus"
-                onClick={() => this.openAddModal()}
-              >
-                Add Article
-              </button>
-            </div>
+          <div className="add__container">
+            <button
+              type="button"
+              className="button fas fa-plus"
+              onClick={() => this.openAddModal()}
+            >
+              Add Article
+            </button>
           </div>
         ) : null}
         {filteredArticles}
@@ -351,40 +349,36 @@ export default class HomePage extends Component {
           />
         )}
         <div
-          id="modal-alert"
           className={
             this.state.isDeleteModalOpen
               ? "modal__overlay modal__overlay--open"
               : "modal__overlay"
           }
         >
-          <div id="div-modal-alert" className="add-modal add-modal--small">
-            <div className="modal__content">
-              <div className="alert-container">
-                <h1 className="title modal-title">Delete Article</h1>
-                <p className="alert-delete-p">
-                  Are you sure you want to delete this article?
-                </p>
-                <div className="clearfix">
-                  <button
-                    type="button"
-                    className="button cancel-alert-button"
-                    onClick={this.closeDeleteModal}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="button"
-                    className="delete-alert-button"
-                    onClick={() => {
-                      this.deleteArticle();
-                      this.openToast("delete");
-                    }}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
+          <div className="modal__container modal__container--small">
+              <h1 className="title">Delete Article</h1>
+              <p className="modal__content">
+                Are you sure you want to delete this article?
+              </p>
+
+            <div className="modal__buttons">
+              <button
+                type="button"
+                className="button"
+                onClick={this.closeDeleteModal}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="button button--pink"
+                onClick={() => {
+                  this.deleteArticle();
+                  this.openToast("delete");
+                }}
+              >
+                Delete
+              </button>
             </div>
           </div>
         </div>

@@ -30,7 +30,7 @@ export default function Navbar() {
             ))}
             {cookie ? (
               <li className="nav__item">
-                <a href="" className="nav__link" onClick={handleLogout}>
+                <a href="/login" className="nav__link" onClick={handleLogout}>
                   logout
                 </a>
               </li>
