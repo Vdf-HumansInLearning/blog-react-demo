@@ -14,12 +14,20 @@ import ProtectedLogin from "./pages/ProtectedLogin";
 const defaultValues = {
   theme: "",
   toggleTheme: () => null,
+  currentTheme: "",
 };
 
 export const ThemeContext = React.createContext({ defaultValues });
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
+  const currentTheme = localStorage.getItem("theme")
+    ? localStorage.getItem("theme")
+    : null;
+
+  if (currentTheme) {
+    document.body.setAttribute("data-theme", currentTheme);
+  }
 
   function toggleTheme() {
     setTheme((theme) => (theme === "light" ? "dark" : "light"));
@@ -31,8 +39,9 @@ function App() {
       localStorage.setItem("theme", "light");
     }
   }
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, currentTheme }}>
       <ThemeSwitch />
       <Navbar />
       <Routes>

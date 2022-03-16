@@ -6,7 +6,6 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      currentTheme: ""
     };
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -18,12 +17,7 @@ class Login extends Component {
   handleChangePassword = (e) => {
     this.setState({ password: e.target.value });
   };
-  componentDidMount() {
-    const currentTheme = localStorage.getItem("theme")
-      ? localStorage.getItem("theme")
-      : null;
-    this.setState({ currentTheme: currentTheme });
-  }
+
   render() {
     return (
       <div className="login">
