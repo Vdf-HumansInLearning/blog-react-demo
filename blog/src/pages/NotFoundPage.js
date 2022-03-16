@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 class NotFound extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentTheme: "",
-    };
+    // this.state = {
+    //   currentTheme: "",
+    // };
   }
 
-  componentDidMount() {
-    const currentTheme = localStorage.getItem("theme")
-      ? localStorage.getItem("theme")
-      : null;
-    this.setState({ currentTheme: currentTheme });
-  }
+  // componentDidMount() {
+  //   const currentTheme = localStorage.getItem("theme")
+  //     ? localStorage.getItem("theme")
+  //     : null;
+  //   this.setState({ currentTheme: currentTheme });
+  // }
 
   render() {
     return (
