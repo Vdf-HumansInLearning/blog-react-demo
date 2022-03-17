@@ -4,7 +4,12 @@ import "./ToastAlert.css";
 
 class ToastAlert extends Component {
   render() {
-    const { showSuccessMessage, showDeleteMessage, isToastShown, toastContent } = this.props;
+    const {
+      showSuccessMessage,
+      showDeleteMessage,
+      isToastShown,
+      toastContent,
+    } = this.props;
     if (
       (showSuccessMessage && isToastShown) ||
       (showDeleteMessage && isToastShown)

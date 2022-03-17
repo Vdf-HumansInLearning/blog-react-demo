@@ -23,10 +23,9 @@ export default function AddArticleModal({
     "image/jpeg",
     "image/gif",
     "image/png",
-    "image/bmp"
+    "image/bmp",
   ];
-  const upperCaseLetter =
-    /([A-Z]{1})([a-z]+)(\s)([A-Z]{1})([a-z]+){1}(|\s)$/g;
+  const upperCaseLetter = /([A-Z]{1})([a-z]+)(\s)([A-Z]{1})([a-z]+){1}(|\s)$/g;
   const yupValidation = Yup.object({
     title: Yup.string()
       .min(5, "The title must be at least 5 characters long")
@@ -36,17 +35,23 @@ export default function AddArticleModal({
       .required("Please enter the tag of your article!"),
     author: Yup.string()
       .required("Please enter the author of your article!")
-      .matches(upperCaseLetter, "Please use capital letters for the author's first and last name!"),
-    date: Yup.string()
-      .required("Please choose a date"),
+      .matches(
+        upperCaseLetter,
+        "Please use capital letters for the author's first and last name!"
+      ),
+    date: Yup.string().required("Please choose a date"),
     imgUrl: Yup.mixed()
       .required("Please choose an image")
-      .test("fileFormat", "Please insert an image with jpg/jpeg/png/bmp/gif extension!", value => value && supportedFormats.includes(value.type)),
-    saying: Yup.string()
-      .required("Please enter the main saying of your article"),
-    content: Yup.string()
-      .required("Please enter the content of your article")
-  })
+      .test(
+        "fileFormat",
+        "Please insert an image with jpg/jpeg/png/bmp/gif extension!",
+        (value) => value && supportedFormats.includes(value.type)
+      ),
+    saying: Yup.string().required(
+      "Please enter the main saying of your article"
+    ),
+    content: Yup.string().required("Please enter the content of your article"),
+  });
   return (
     <div
       className={
@@ -66,7 +71,6 @@ export default function AddArticleModal({
             saying,
             content,
           }}
-
           validationSchema={yupValidation}
           onSubmit={(values) => {
             if (id) {
@@ -89,12 +93,11 @@ export default function AddArticleModal({
                   }
                   placeholder="Please enter the title"
                 />
-                <i className={
-                  errors.title && touched.title
-                    ? "icon-cancel-circled  " : ""
-                }
-                >
-                </i>
+                <i
+                  className={
+                    errors.title && touched.title ? "icon-cancel-circled" : ""
+                  }
+                ></i>
 
                 <ErrorMessage
                   name="title"
@@ -107,17 +110,15 @@ export default function AddArticleModal({
                   type="text"
                   name="tag"
                   className={
-                    errors.tag && touched.tag
-                      ? "input input__fail" : "input"
+                    errors.tag && touched.tag ? "input input__fail" : "input"
                   }
                   placeholder="Please enter tag"
                 />
-                <i className={
-                  errors.tag && touched.tag
-                    ? "icon-cancel-circled  " : ""
-                }
-                >
-                </i>
+                <i
+                  className={
+                    errors.tag && touched.tag ? "icon-cancel-circled" : ""
+                  }
+                ></i>
                 <ErrorMessage
                   name="tag"
                   component="div"
@@ -130,16 +131,16 @@ export default function AddArticleModal({
                   name="author"
                   className={
                     errors.author && touched.author
-                      ? "input input__fail" : "input"
+                      ? "input input__fail"
+                      : "input"
                   }
                   placeholder="Please enter the author"
                 />
-                <i className={
-                  errors.author && touched.author
-                    ? "icon-cancel-circled  " : ""
-                }
-                >
-                </i>
+                <i
+                  className={
+                    errors.author && touched.author ? "icon-cancel-circled" : ""
+                  }
+                ></i>
                 <ErrorMessage
                   name="author"
                   component="div"
@@ -151,17 +152,15 @@ export default function AddArticleModal({
                   type="date"
                   name="date"
                   className={
-                    errors.date && touched.date
-                      ? "input input__fail" : "input"
+                    errors.date && touched.date ? "input input__fail" : "input"
                   }
                   placeholder="Please choose the date"
                 />
-                <i className={
-                  errors.date && touched.date
-                    ? "icon-cancel-circled  " : ""
-                }
-                >
-                </i>
+                <i
+                  className={
+                    errors.date && touched.date ? "icon-cancel-circled" : ""
+                  }
+                ></i>
                 <ErrorMessage
                   name="date"
                   component="div"
@@ -185,7 +184,8 @@ export default function AddArticleModal({
                       }
                       className={
                         errors.imgUrl && touched.imgUrl
-                          ? " input__data input__fail" : " input__data"
+                          ? "input__data input__fail"
+                          : "input__data"
                       }
                     />
                   ) : (
@@ -198,18 +198,21 @@ export default function AddArticleModal({
                       }
                       className={
                         errors.imgUrl && touched.imgUrl
-                          ? " input__data input__fail" : " input__data"
+                          ? "input__data input__fail"
+                          : "input__data"
                       }
                     />
-
                   )}
-                  <button type="submit" className="input__button">Choose File</button>
-                  <i className={
-                    errors.imgUrl && touched.imgUrl
-                      ? "icon-cancel-circled  " : ""
-                  }
-                  >
-                  </i>
+                  <button type="submit" className="input__button">
+                    Choose File
+                  </button>
+                  <i
+                    className={
+                      errors.imgUrl && touched.imgUrl
+                        ? "icon-cancel-circled"
+                        : ""
+                    }
+                  ></i>
                 </div>
                 <ErrorMessage
                   name="imgUrl"
@@ -223,16 +226,16 @@ export default function AddArticleModal({
                   name="saying"
                   className={
                     errors.saying && touched.saying
-                      ? "input input__fail" : "input"
+                      ? "input input__fail"
+                      : "input"
                   }
                   placeholder="Please enter the saying"
                 />
-                <i className={
-                  errors.saying && touched.saying
-                    ? "icon-cancel-circled  " : ""
-                }
-                >
-                </i>
+                <i
+                  className={
+                    errors.saying && touched.saying ? "icon-cancel-circled" : ""
+                  }
+                ></i>
 
                 <ErrorMessage
                   name="saying"
@@ -248,18 +251,20 @@ export default function AddArticleModal({
                   as="textarea"
                   className={
                     errors.content && touched.content
-                      ? "textarea input__fail" : "textarea"
+                      ? "textarea input__fail"
+                      : "textarea"
                   }
                   cols="28"
                   rows="10"
                   placeholder="Please enter content"
                 />
-                <i className={
-                  errors.content && touched.content
-                    ? "icon-cancel-circled  " : ""
-                }
-                >
-                </i>
+                <i
+                  className={
+                    errors.content && touched.content
+                      ? "icon-cancel-circled"
+                      : ""
+                  }
+                ></i>
                 <ErrorMessage
                   name="content"
                   component="div"

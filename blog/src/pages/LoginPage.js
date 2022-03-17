@@ -49,7 +49,6 @@ function LoginPage() {
           setCredentialsError(true);
         }
       })
-
       .catch((error) => {
         console.log(error);
       });

@@ -37,7 +37,6 @@ class ThemeSwitch extends Component {
         <label className="theme-switch" htmlFor="switch">
           <input
             type="checkbox"
-            id="switch"
             onChange={this.switchTheme}
             ref={(ref) => (this.checkInput = ref)}
           />
