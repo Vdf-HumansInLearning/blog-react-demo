@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import ToastAlert from "../components/ToastAlert/ToastAlert";
 import AddArticleModal from "../components/AddArticleModal";
+import Cookies from "js-cookie";
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export default class HomePage extends Component {
       showSuccessMessage: false,
       showDeleteMessage: false,
       toastContent: "",
-      cookie: document.cookie,
+      cookie: Cookies.get("email"),
     };
     this.getArticles = this.getArticles.bind(this);
     this.handleNext = this.handleNext.bind(this);
@@ -54,10 +55,10 @@ export default class HomePage extends Component {
 
   componentDidMount() {
     this.getArticles();
-    window.scrollTo(0, 0);
+    this.scrollTop();
   }
 
-  componentDidUpdate() {
+  scrollTop() {
     window.scrollTo(0, 0);
   }
 
@@ -68,7 +69,8 @@ export default class HomePage extends Component {
         indexStart: indexStart + indexSize,
         indexEnd: indexEnd + indexSize,
       },
-      this.getArticles
+      this.getArticles,
+      this.scrollTop()
     );
   }
 
@@ -79,7 +81,8 @@ export default class HomePage extends Component {
         indexStart: indexStart - indexSize,
         indexEnd: indexEnd - indexSize,
       },
-      this.getArticles
+      this.getArticles,
+      this.scrollTop()
     );
   }
 
@@ -111,17 +114,6 @@ export default class HomePage extends Component {
   }
 
   createNewArticle(article) {
-    // const dateParsed = new Date(this.state.date);
-    // const today = new Date();
-
-    // let dd = String(dateParsed.getDate()).padStart(2, "0");
-    // let mm = dateParsed.toLocaleString("default", {
-    //   month: "long",
-    // });
-    // let yyyy = dateParsed.getFullYear();
-
-    // let date = mm + " " + dd + ", " + yyyy;
-
     fetch("http://localhost:3007/articles", {
       method: "POST",
       headers: {
@@ -131,19 +123,13 @@ export default class HomePage extends Component {
         ...article,
         imgUrl: article.imgUrl.name,
         imgAlt: "photo",
-
-        // date: date,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         this.closeModalResetForm();
-        // if (dateParsed.getTime() <= today.getTime()) {
         this.getArticles();
         this.showToast("The article has been created!");
-        // } else {
-        //   console.log("not possible");
-        // }
       })
       .catch((err) => console.log(err));
   }
@@ -209,6 +195,7 @@ export default class HomePage extends Component {
       id: null,
     });
   }
+
   closeDeleteModal() {
     this.setState({
       isDeleteModalOpen: false,
@@ -282,6 +269,15 @@ export default class HomePage extends Component {
       isToastShown,
       toastContent,
       cookie,
+      isModalOpen,
+      id,
+      title,
+      tag,
+      author,
+      date,
+      imgUrl,
+      saying,
+      content,
     } = this.state;
 
     const filteredArticles = articles.map((article) => (
@@ -311,16 +307,14 @@ export default class HomePage extends Component {
           toastContent={toastContent}
         />
         {cookie ? (
-          <div>
-            <div className="add__container">
-              <button
-                type="button"
-                className="button open-modal fas fa-plus"
-                onClick={() => this.openAddModal()}
-              >
-                Add Article
-              </button>
-            </div>
+          <div className="add__container">
+            <button
+              type="button"
+              className="button fas fa-plus"
+              onClick={() => this.openAddModal()}
+            >
+              Add Article
+            </button>
           </div>
         ) : null}
         {filteredArticles}
@@ -331,17 +325,17 @@ export default class HomePage extends Component {
           isPrevious={isPrevious}
         />
 
-        {this.state.isModalOpen && (
+        {isModalOpen && (
           <AddArticleModal
-            isModalOpen={this.state.isModalOpen}
-            id={this.state.id}
-            title={this.state.title}
-            tag={this.state.tag}
-            author={this.state.author}
-            date={this.state.date}
-            imgUrl={this.state.imgUrl}
-            saying={this.state.saying}
-            content={this.state.content}
+            isModalOpen={isModalOpen}
+            id={id}
+            title={title}
+            tag={tag}
+            author={author}
+            date={date}
+            imgUrl={imgUrl}
+            saying={saying}
+            content={content}
             createNewArticle={this.createNewArticle}
             editArticle={this.editArticle}
             handleChangeInput={this.handleChangeInput}
@@ -351,40 +345,36 @@ export default class HomePage extends Component {
           />
         )}
         <div
-          id="modal-alert"
           className={
             this.state.isDeleteModalOpen
               ? "modal__overlay modal__overlay--open"
               : "modal__overlay"
           }
         >
-          <div id="div-modal-alert" className="add-modal add-modal--small">
-            <div className="modal__content">
-              <div className="alert-container">
-                <h1 className="title modal-title">Delete Article</h1>
-                <p className="alert-delete-p">
-                  Are you sure you want to delete this article?
-                </p>
-                <div className="clearfix">
-                  <button
-                    type="button"
-                    className="button cancel-alert-button"
-                    onClick={this.closeDeleteModal}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="button"
-                    className="delete-alert-button"
-                    onClick={() => {
-                      this.deleteArticle();
-                      this.openToast("delete");
-                    }}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
+          <div className="modal__container modal__container--small">
+            <h1 className="title">Delete Article</h1>
+            <p className="modal__content">
+              Are you sure you want to delete this article?
+            </p>
+
+            <div className="modal__buttons">
+              <button
+                type="button"
+                className="button"
+                onClick={this.closeDeleteModal}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="button button--pink"
+                onClick={() => {
+                  this.deleteArticle();
+                  this.openToast("delete");
+                }}
+              >
+                Delete
+              </button>
             </div>
           </div>
         </div>

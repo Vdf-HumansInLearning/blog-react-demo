@@ -133,9 +133,6 @@ app.put("/articles/:id", (req, res) => {
         }
 
     };
-    console.log(req.body)
-    console.log(req.body.imgUrl)
-    console.log(req.body.imgUrl.name)
     writeJSONFile(articlesList);
     res.json(articlesList[index]);
 });

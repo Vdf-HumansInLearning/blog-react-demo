@@ -1,13 +1,18 @@
-import React from "react";
+import React, { Component } from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "../components/Login";
-import { useState } from "react";
 
-function LoginPage() {
-  const navigate = useNavigate();
-  const [credentialsError, setCredentialsError] = useState(false);
+class LoginPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      credentialsError: false,
+    };
+    this.createCookie = this.createCookie.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+  }
 
-  function createCookie(name, value, days) {
+  createCookie(name, value, days) {
     var date, expires;
     if (days) {
       date = new Date();
@@ -19,7 +24,7 @@ function LoginPage() {
     document.cookie = name + "=" + value + expires;
   }
 
-  const handleLogin = (event, email, password) => {
+  handleLogin = (event, email, password) => {
     event.preventDefault();
 
     let admin = {
@@ -43,20 +48,30 @@ function LoginPage() {
       .then((response) => {
         let email = response.body.email;
         if (response.status === 200) {
-          createCookie("email", `${email}`, 2);
-          navigate("/");
+          this.createCookie("email", `${email}`, 2);
+          this.props.navigate("/");
         } else {
-          setCredentialsError(true);
+          this.setState({ credentialsError: true });
         }
       })
-
       .catch((error) => {
         console.log(error);
       });
   };
-  return (
-    <Login handleLogin={handleLogin} credentialsError={credentialsError} />
-  );
+
+  render() {
+    return (
+      <Login
+        handleLogin={this.handleLogin}
+        credentialsError={this.state.credentialsError}
+      />
+    );
+  }
 }
 
-export default LoginPage;
+const withNavigate = (WrappedComponent) => (props) => {
+  const navigate = useNavigate();
+  return <WrappedComponent {...props} navigate={navigate} />;
+};
+
+export default withNavigate(LoginPage);

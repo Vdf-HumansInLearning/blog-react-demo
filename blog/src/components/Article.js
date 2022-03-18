@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { format } from "date-fns";
 
 function Article({ article, editArticle, deleteArticle, isDetails, cookie }) {
   const text = article.content;
-
+  const formattedDate = format(new Date(article.date), "PPP");
   const spliced = text.substring(0, text.length / 2);
   let firstParagraph;
   let secondParagraph;
+
   if (
     text.charAt(spliced.length - 1) === "!" ||
     text.charAt(spliced.length - 1) === "." ||
@@ -28,7 +30,7 @@ function Article({ article, editArticle, deleteArticle, isDetails, cookie }) {
           Added by
           <span className="info__mark point"> {article.author}</span>
         </li>
-        <li className="info__item">{article.date}</li>
+        <li className="info__item">{formattedDate}</li>
       </ul>
       {!isDetails && cookie && (
         <div className="actions__container">

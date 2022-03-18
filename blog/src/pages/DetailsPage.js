@@ -10,6 +10,7 @@ class DetailsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       title: "",
       tag: "",
       author: "",
@@ -17,7 +18,6 @@ class DetailsPage extends Component {
       imgUrl: "",
       saying: "",
       content: "",
-      id: "",
       nextId: null,
       prevId: null,
       isShowLoad: true,
@@ -67,16 +67,20 @@ class DetailsPage extends Component {
       });
   }
 
+  scrollTop() {
+    window.scrollTo(0, 0);
+  }
+
   componentDidMount() {
     this.getArticle();
-    window.scrollTo(0, 0);
+    this.scrollTop();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.params !== this.props.params) {
       this.getArticle();
     }
-    window.scrollTo(0, 0);
+    this.scrollTop();
   }
 
   render() {
