@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
@@ -58,6 +59,13 @@ class Login extends Component {
             >
               Login
             </button>
+            <p className="login__recovery">
+              Forgot your password?
+              <Link to="/not-found" className="login__recovery--link">
+                {" "}
+                Click here!
+              </Link>
+            </p>
           </form>
         </div>
       </div>

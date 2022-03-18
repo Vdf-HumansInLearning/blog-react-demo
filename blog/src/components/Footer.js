@@ -8,12 +8,9 @@ export default function Footer({
 }) {
   return (
     <>
-      <footer className="footer next-button-class">
+      <footer className="footer footer__link--next">
         {isNext ? (
-          <button
-            className="footer__link footer__link--next"
-            onClick={handleNext}
-          >
+          <button className="footer__link" onClick={handleNext}>
             next
           </button>
         ) : (

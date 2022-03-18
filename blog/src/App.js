@@ -48,8 +48,8 @@ function App() {
         <Route path="*" element={<Navigate replace to="/not-found" />} />
         <Route path="/not-found" element={<NotFoundPage />}></Route>
         <Route path="/" element={<HomePage />} />
-        <Route path="article" element={<DetailsPage />}>
-          <Route path=":id" element={<DetailsPage test="abcd" />} />
+        <Route path="/article" element={<DetailsPage />}>
+          <Route path=":id" element={<DetailsPage />} />
         </Route>
         <Route element={<ProtectedLogin />}>
           <Route path="/login" element={<LoginPage />} />

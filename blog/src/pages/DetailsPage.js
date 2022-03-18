@@ -44,6 +44,7 @@ class DetailsPage extends Component {
 
   getArticle() {
     const articleId = this.props.params.id;
+    const { navigate } = this.props;
 
     fetch(`http://localhost:3007/articles/${articleId}`)
       .then(
@@ -52,6 +53,7 @@ class DetailsPage extends Component {
             console.log(
               "Looks like there was a problem. Status Code: " + response.status
             );
+            navigate("/not-found", { replace: true });
             return;
           }
           response.json().then((data) => {

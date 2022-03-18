@@ -485,7 +485,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .theme-switch {
-    width: 90px;
+    width: 84px;
     height: 43px;
     border-radius: 22px;
     background: transparent;
@@ -511,7 +511,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .fa-moon {
     color: var(--moon);
     position: relative;
-    right: 19px;
+    right: 21px;
 }
 
 .fa-sun {
@@ -602,8 +602,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .login {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
-    height: calc(100vh - 264px);
+    height: calc(100vh - 63px);
     flex-direction: column;
     background-position: center;
     position: absolute;
@@ -643,6 +644,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-bottom: 40px;
     font-size: 35px;
     text-align: center;
+}
+
+.login__recovery {
+    margin-top: 5px;
+}
+
+.login__recovery--link {
+    text-decoration: none;
 }
 
 .icon-user,

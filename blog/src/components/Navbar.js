@@ -18,8 +18,8 @@ export default function Navbar() {
   const nav = ["home", "reviews", "about"];
   return (
     <>
-      <div className="nav">
-        {window.location.href.slice(21) !== "/login" ? (
+      {window.location.href.slice(21) !== "/login" ? (
+        <div className="nav">
           <ul className="nav__container">
             {nav.map((item, index) => (
               <li key={index} className="nav__item">
@@ -42,8 +42,8 @@ export default function Navbar() {
               </li>
             )}
           </ul>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </>
   );
 }
