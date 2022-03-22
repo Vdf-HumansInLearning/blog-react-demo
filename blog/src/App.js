@@ -13,25 +13,23 @@ import ProtectedLogin from "./pages/ProtectedLogin";
 
 const defaultValues = {
   theme: "",
-  toggleTheme: () => null,
+  toggleTheme: () => false,
   currentTheme: "",
 };
 
 export const ThemeContext = React.createContext({ defaultValues });
 
 function App() {
-  const [theme, setTheme] = useState("dark");
-  const currentTheme = localStorage.getItem("theme")
-    ? localStorage.getItem("theme")
-    : null;
+  const [theme, setTheme] = useState("");
+  const currentTheme = localStorage.getItem("theme");
 
   if (currentTheme) {
     document.body.setAttribute("data-theme", currentTheme);
   }
 
   function toggleTheme() {
-    setTheme((theme) => (theme === "light" ? "dark" : "light"));
-    if (theme === "light") {
+    setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
+    if (currentTheme === "light") {
       document.body.setAttribute("data-theme", "dark");
       localStorage.setItem("theme", "dark");
     } else {
