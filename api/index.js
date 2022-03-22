@@ -60,11 +60,11 @@ app.get("/articles/:id", (req, res) => {
             article = {...articlesList[i], prevId, nextId };
         }
     }
-
     if (article === undefined) {
-        article = { message: "article not found", status: 404 };
+        res.status(404).json({ message: "article not found" });
+    } else {
+        res.status(200).json(article);
     }
-    res.json(article);
 });
 
 // Post
@@ -119,7 +119,7 @@ app.put("/articles/:id", (req, res) => {
     articlesList[index] = {
         ...updatedArticle,
         id: articlesList[index].id,
-        imgUrl:  {
+        imgUrl: {
             "name": String(req.body.imgUrl).includes("img/") ? req.body.imgUrl : "img/" + req.body.imgUrl,
             "lastModified": 2,
             "lastModifiedDate": "Fri Jan 14 2022 15:35:18 GMT+0200 (Eastern European Standard Time)",
