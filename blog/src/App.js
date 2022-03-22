@@ -29,7 +29,7 @@ function App() {
 
   function toggleTheme() {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
-    if (currentTheme === "light") {
+    if (currentTheme === "light" || currentTheme === null) {
       document.body.setAttribute("data-theme", "dark");
       localStorage.setItem("theme", "dark");
     } else {
