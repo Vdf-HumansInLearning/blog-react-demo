@@ -515,7 +515,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     align-items: center;
     width: 100%;
-    height: calc(100vh - 304px);
+    height: calc(100vh - 333px);
     flex-direction: column;
     background-position: center;
     position: absolute;
