@@ -352,7 +352,7 @@ export default class HomePage extends Component {
           }
         >
           <div className="modal__container modal__container--small">
-            <h1 className="title">Delete Article</h1>
+            <h1 className="title title--delete">Delete Article</h1>
             <p className="modal__content">
               Are you sure you want to delete this article?
             </p>

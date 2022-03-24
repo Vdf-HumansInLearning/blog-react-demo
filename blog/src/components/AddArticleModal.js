@@ -217,7 +217,7 @@ export default function AddArticleModal({
                 <ErrorMessage
                   name="imgUrl"
                   component="div"
-                  className="input__error"
+                  className="input__error input__error--file"
                 />
               </div>
               <div className="input__mb">
@@ -244,7 +244,7 @@ export default function AddArticleModal({
                 />
               </div>
 
-              <div className="input__textarea">
+              <div className="input__mb">
                 <Field
                   type="text"
                   name="content"
