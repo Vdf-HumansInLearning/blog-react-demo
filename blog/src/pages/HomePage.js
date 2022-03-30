@@ -155,6 +155,27 @@ export default class HomePage extends Component {
       .catch((err) => console.log(err));
   }
 
+  deleteArticle() {
+    const articleId = this.state.id;
+    if (!articleId) {
+      return;
+    }
+    fetch("http://localhost:3007/articles/" + articleId, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this.getArticles();
+        this.closeDeleteModal();
+        this.showToast("The article has been successfully deleted!");
+      })
+      .catch((error) => {
+        this.getArticles();
+        this.closeDeleteModal();
+        console.error("Error:", error);
+      });
+  }
+
   showToast(toastContent) {
     this.setState({ isToastShown: true, toastContent: toastContent });
     setTimeout(
@@ -228,27 +249,6 @@ export default class HomePage extends Component {
       isDeleteModalOpen: true,
       id: id,
     });
-  }
-
-  deleteArticle() {
-    const articleId = this.state.id;
-    if (!articleId) {
-      return;
-    }
-    fetch("http://localhost:3007/articles/" + articleId, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        this.getArticles();
-        this.closeDeleteModal();
-        this.showToast("The article has been successfully deleted!");
-      })
-      .catch((error) => {
-        this.getArticles();
-        this.closeDeleteModal();
-        console.error("Error:", error);
-      });
   }
 
   handleSelectedFile(event) {

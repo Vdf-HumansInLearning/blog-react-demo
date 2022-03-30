@@ -28,7 +28,7 @@ class Login extends Component {
             <p className="login__error">Incorrect email or password!</p>
           ) : null}
           <form>
-            <div className="mb-3 d-flex align-content-center justify-content-evenly">
+            <div className="mb-3 d-flex align-content-center ">
               <i className="icon-user"></i>
               <input
                 onChange={this.handleChangeEmail}

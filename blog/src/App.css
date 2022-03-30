@@ -784,20 +784,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .error__box {
         position: relative;
-        height: 1045px;
+        height: calc(100vh - -224px);
         background-position: center;
     }
 
     /* login page styling */
     .login {
         width: 1280px;
-        height: 1086px;
+        height: 1347px;
     }
 
     .login__container {
-        top: 100px;
-        width: 400px;
-        height: 600px;
+        top: 0px;
+        width: 500px;
+        height: 700px;
     }
 
     .login__title {
@@ -814,7 +814,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 
     .login__input {
-        width: 275px;
+        width: 345px;
         height: 60px;
         font-size: 28px;
     }
@@ -989,7 +989,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     /* page404 */
     .error__box {
         position: relative;
-        height: 262vh;
+        height: calc(100vh - -1341px);
         background-position: left;
     }
 
@@ -1005,11 +1005,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     /* login page styling */
     .login {
         width: 1280px;
-        height: 2179px;
+        height: 2476px;
     }
 
     .login__container {
-        top: 400px;
+        top: -200px;
         width: 700px;
         height: 900px;
     }
