@@ -32,7 +32,7 @@ export default class HomePage extends Component {
       showSuccessMessage: false,
       showDeleteMessage: false,
       toastContent: "",
-      cookie: Cookies.get("email"),
+      cookie: !Cookies.get("email") ? false : true,
     };
     this.getArticles = this.getArticles.bind(this);
     this.handleNext = this.handleNext.bind(this);
@@ -56,6 +56,7 @@ export default class HomePage extends Component {
   componentDidMount() {
     this.getArticles();
     this.scrollTop();
+    console.log(this.state.cookie);
   }
 
   scrollTop() {

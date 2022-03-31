@@ -7,7 +7,7 @@ export default function Navbar() {
   const cookie = Cookies.get("email");
 
   const clearCookie = (name) => {
-    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    Cookies.remove(name);
   };
 
   const handleLogout = () => {

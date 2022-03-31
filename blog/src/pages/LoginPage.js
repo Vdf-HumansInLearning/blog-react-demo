@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "../components/Login";
+import Cookies from "js-cookie";
 
 class LoginPage extends Component {
   constructor(props) {
@@ -12,16 +13,8 @@ class LoginPage extends Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
-  createCookie(name, value, days) {
-    var date, expires;
-    if (days) {
-      date = new Date();
-      date.setDate(date.getDate() + days);
-      expires = "; expires=" + date.toUTCString();
-    } else {
-      expires = "";
-    }
-    document.cookie = name + "=" + value + expires;
+  createCookie(name, value, date) {
+    Cookies.set(name, value, { expires: date });
   }
 
   handleLogin = (event, email, password) => {
