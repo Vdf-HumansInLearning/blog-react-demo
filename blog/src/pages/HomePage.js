@@ -56,7 +56,6 @@ export default class HomePage extends Component {
   componentDidMount() {
     this.getArticles();
     this.scrollTop();
-    console.log(this.state.cookie);
   }
 
   scrollTop() {
