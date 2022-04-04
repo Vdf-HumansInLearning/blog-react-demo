@@ -28,8 +28,8 @@ export default function AddArticleModal({
   const upperCaseLetter = /([A-Z]{1})([a-z]+)(\s)([A-Z]{1})([a-z]+){1}(|\s)$/g;
   const yupValidation = Yup.object({
     title: Yup.string()
-      .min(5, "The title must be at least 5 characters long")
-      .required("Please enter the title if your article"),
+      .min(5, "The title must be at least 5 characters long!")
+      .required("Please enter the title of your article!"),
     tag: Yup.string()
       .max(30, "Please keep your tag under 30 characters!")
       .required("Please enter the tag of your article!"),
@@ -39,18 +39,18 @@ export default function AddArticleModal({
         upperCaseLetter,
         "Please use capital letters for the author's first and last name!"
       ),
-    date: Yup.string().required("Please choose a date"),
+    date: Yup.string().required("Please choose a date!"),
     imgUrl: Yup.mixed()
-      .required("Please choose an image")
+      .required("Please choose an image!")
       .test(
         "fileFormat",
         "Please insert an image with jpg/jpeg/png/bmp/gif extension!",
         (value) => value && supportedFormats.includes(value.type)
       ),
     saying: Yup.string().required(
-      "Please enter the main saying of your article"
+      "Please enter the main saying of your article!"
     ),
-    content: Yup.string().required("Please enter the content of your article"),
+    content: Yup.string().required("Please enter the content of your article!"),
   });
   return (
     <div
