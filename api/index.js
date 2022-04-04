@@ -100,7 +100,6 @@ app.post("/articles", (req, res) => {
         saying: saying,
         content: content,
     });
-    console.log(req.body)
     writeJSONFile(articlesList);
     res.json(articlesList);
 });
